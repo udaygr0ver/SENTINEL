@@ -2,6 +2,7 @@ from src.agent.state import AgentState
 from src.parsers.evtx_parser import parse_evtx
 from src.parsers.pcap_parser import parse_pcap
 from src.parsers.mem_parser import parse_memory
+from src.parsers.yara_scanner import scan_file
 from src.kb.retriever import get_mitre_mapping
 from langchain_community.llms import Ollama
 from langchain_core.messages import SystemMessage, HumanMessage
@@ -13,12 +14,16 @@ def parser_node(state: AgentState):
     artifacts = state.get("artifacts", [])
     
     for fp in file_paths:
+        # 1. Run type-specific parsers
         if fp.endswith(".evtx"):
             artifacts.extend(parse_evtx(fp))
         elif fp.endswith(".pcap") or fp.endswith(".cap"):
             artifacts.extend(parse_pcap(fp))
         elif fp.endswith(".raw") or fp.endswith(".mem") or fp.endswith(".vmem"):
             artifacts.extend(parse_memory(fp))
+            
+        # 2. Run YARA signature scanning on ALL uploaded files
+        artifacts.extend(scan_file(fp))
             
     return {"artifacts": artifacts}
 
