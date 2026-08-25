@@ -1,6 +1,8 @@
 import os
+from datetime import datetime, timezone
+
 import yaml
-from datetime import datetime
+
 from src.schema import ForensicArtifact
 
 RULES_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "rules", "sigma")
@@ -61,7 +63,7 @@ def evaluate_artifact_against_sigma(artifact: ForensicArtifact, rules: list):
                 mitre_str = ", ".join(mitre_tags) if mitre_tags else "Unknown"
                 
                 match_artifact = ForensicArtifact(
-                    timestamp=datetime.utcnow().isoformat() + "Z",
+                    timestamp=datetime.now(timezone.utc).isoformat() + "Z",
                     source_type="SIGMA_MATCH",
                     host=artifact.host,
                     user=artifact.user,

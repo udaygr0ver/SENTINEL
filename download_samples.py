@@ -1,5 +1,6 @@
-import urllib.request
 import os
+import urllib.request
+
 
 def download_file(url, output_path):
     print(f"Downloading {url} to {output_path}...")

@@ -1,5 +1,4 @@
 import chromadb
-
 from chromadb.utils import embedding_functions
 
 CHROMA_DB_PATH = "data/chroma_db"

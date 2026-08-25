@@ -1,8 +1,10 @@
-import subprocess
 import json
-from src.schema import ForensicArtifact
-from datetime import datetime
 import os
+import subprocess
+from datetime import datetime, timezone
+
+from src.schema import ForensicArtifact
+
 
 def run_volatility(file_path: str, plugin: str):
     """Runs Volatility 3 CLI and returns parsed JSON output."""
@@ -45,7 +47,7 @@ def parse_memory(file_path: str):
         name = row.get("ImageFileName", "")
         
         artifact = ForensicArtifact(
-            timestamp=datetime.utcnow().isoformat() + "Z", # Memory dumps lack per-process timestamp easily accessible sometimes
+            timestamp=datetime.now(timezone.utc).isoformat() + "Z", # Memory dumps lack per-process timestamp easily accessible sometimes
             source_type="MEM_PSLIST",
             host="MEMORY_IMAGE",
             user="UNKNOWN",
@@ -67,7 +69,7 @@ def parse_memory(file_path: str):
         ioc = foreign if foreign and foreign not in ["0.0.0.0", "::", "*"] else None
         
         artifact = ForensicArtifact(
-            timestamp=datetime.utcnow().isoformat() + "Z",
+            timestamp=datetime.now(timezone.utc).isoformat() + "Z",
             source_type="MEM_NETSCAN",
             host="MEMORY_IMAGE",
             user="UNKNOWN",
@@ -84,7 +86,7 @@ def parse_memory(file_path: str):
         name = row.get("Process", "")
         
         artifact = ForensicArtifact(
-            timestamp=datetime.utcnow().isoformat() + "Z",
+            timestamp=datetime.now(timezone.utc).isoformat() + "Z",
             source_type="MEM_MALFIND",
             host="MEMORY_IMAGE",
             user="UNKNOWN",

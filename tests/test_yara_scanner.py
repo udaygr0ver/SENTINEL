@@ -1,6 +1,7 @@
-import os
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
 from src.parsers.yara_scanner import scan_file
+
 
 @patch('src.parsers.yara_scanner.yara')
 def test_scan_file_yara(mock_yara, tmp_path):

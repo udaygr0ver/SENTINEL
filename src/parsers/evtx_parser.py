@@ -1,8 +1,9 @@
-import json
 import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
+
 from Evtx.Evtx import Evtx
+
 from src.schema import ForensicArtifact
-from datetime import datetime
 
 # Windows Event Log namespaces
 NS = "{http://schemas.microsoft.com/win/2004/08/events/event}"
@@ -17,7 +18,7 @@ def extract_event_data(event_xml):
         event_id = system.find(f"{NS}EventID").text if system is not None else None
         
         time_created = system.find(f"{NS}TimeCreated")
-        timestamp = time_created.attrib.get('SystemTime') if time_created is not None else datetime.utcnow().isoformat()
+        timestamp = time_created.attrib.get('SystemTime') if time_created is not None else datetime.now(timezone.utc).isoformat()
         
         computer = system.find(f"{NS}Computer").text if system is not None else "UNKNOWN"
         
@@ -31,7 +32,7 @@ def extract_event_data(event_xml):
                     data_dict[name] = data.text
 
         return event_id, timestamp, computer, data_dict
-    except Exception as e:
+    except Exception:
         return None, None, None, {}
 
 def parse_evtx(file_path: str):

@@ -1,7 +1,7 @@
-import os
-from unittest.mock import patch, MagicMock
+from scapy.all import DNS, DNSQR, IP, TCP, UDP, Raw, wrpcap
+
 from src.parsers.pcap_parser import parse_pcap
-from scapy.all import IP, TCP, UDP, DNS, DNSQR, wrpcap, Raw
+
 
 def test_parse_pcap_success(tmp_path):
     pcap_file = tmp_path / "mock.cap"

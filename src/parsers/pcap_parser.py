@@ -1,8 +1,11 @@
-from scapy.all import rdpcap, DNSQR, IP, TCP, Raw
-from src.schema import ForensicArtifact
-from datetime import datetime
 import math
 from collections import defaultdict
+from datetime import datetime, timezone
+
+from scapy.all import DNSQR, IP, TCP, Raw, rdpcap
+
+from src.schema import ForensicArtifact
+
 
 def shannon_entropy(data: str) -> float:
     """Calculates the Shannon entropy of a string to detect randomized/encrypted payloads."""
@@ -84,7 +87,7 @@ def parse_pcap(file_path: str):
                 # Calculate average jitter/interval if we wanted to be extremely precise
                 # For this MVP, volume is enough to flag suspicion
                 beacon_artifact = ForensicArtifact(
-                    timestamp=datetime.utcnow().isoformat() + "Z", # Synthetic artifact time
+                    timestamp=datetime.now(timezone.utc).isoformat() + "Z", # Synthetic artifact time
                     source_type="PCAP_C2_BEACON",
                     host=src,
                     user="NETWORK",

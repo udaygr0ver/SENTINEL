@@ -1,7 +1,11 @@
 import operator
-from typing import TypedDict, Annotated, Sequence
+from collections.abc import Sequence
+from typing import Annotated, TypedDict
+
 from langchain_core.messages import BaseMessage
+
 from src.schema import ForensicArtifact
+
 
 class AgentState(TypedDict):
     # The file path(s) to process

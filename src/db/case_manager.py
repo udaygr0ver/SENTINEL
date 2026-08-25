@@ -1,8 +1,8 @@
-import sqlite3
-import os
 import json
-from datetime import datetime
+import os
+import sqlite3
 import uuid
+from datetime import datetime, timezone
 
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data", "sentinel.db")
 
@@ -37,7 +37,7 @@ def init_db():
 def create_case(llm_model: str) -> str:
     """Creates a new case and returns the UUID."""
     case_id = str(uuid.uuid4())
-    timestamp = datetime.utcnow().isoformat() + "Z"
+    timestamp = datetime.now(timezone.utc).isoformat() + "Z"
     
     conn = get_db_connection()
     cursor = conn.cursor()

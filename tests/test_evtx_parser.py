@@ -1,4 +1,5 @@
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
 from src.parsers.evtx_parser import parse_evtx
 
 MOCK_XML_4688 = """

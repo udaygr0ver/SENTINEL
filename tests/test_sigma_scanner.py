@@ -1,8 +1,8 @@
-import os
-from unittest.mock import patch
+from datetime import datetime, timezone
+
 from src.parsers.sigma_scanner import evaluate_artifact_against_sigma
 from src.schema import ForensicArtifact
-from datetime import datetime
+
 
 def test_evaluate_sigma_match():
     # Setup mock rule
@@ -20,7 +20,7 @@ def test_evaluate_sigma_match():
     
     # Setup artifact that should match
     artifact = ForensicArtifact(
-        timestamp=datetime.utcnow().isoformat() + "Z",
+        timestamp=datetime.now(timezone.utc).isoformat() + "Z",
         source_type="EVTX_4688",
         host="WORKSTATION",
         user="Admin",
@@ -49,7 +49,7 @@ def test_evaluate_sigma_no_match():
     
     # Different event ID
     artifact = ForensicArtifact(
-        timestamp=datetime.utcnow().isoformat() + "Z",
+        timestamp=datetime.now(timezone.utc).isoformat() + "Z",
         source_type="EVTX_4624",
         host="WORKSTATION",
         user="Admin",

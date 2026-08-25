@@ -1,8 +1,7 @@
-import requests
-import json
+
 import chromadb
+import requests
 from chromadb.utils import embedding_functions
-from sentence_transformers import SentenceTransformer
 
 MITRE_URL = "https://raw.githubusercontent.com/mitre/cti/master/enterprise-attack/enterprise-attack.json"
 CHROMA_DB_PATH = "data/chroma_db"

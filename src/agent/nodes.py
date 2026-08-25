@@ -1,12 +1,14 @@
+from langchain_community.chat_models import ChatOllama
+from langchain_core.messages import HumanMessage, SystemMessage
+
 from src.agent.state import AgentState
+from src.kb.retriever import get_mitre_mapping
 from src.parsers.evtx_parser import parse_evtx
-from src.parsers.pcap_parser import parse_pcap
 from src.parsers.mem_parser import parse_memory
+from src.parsers.pcap_parser import parse_pcap
 from src.parsers.sigma_scanner import scan_artifacts_with_sigma
 from src.parsers.yara_scanner import scan_file
-from src.kb.retriever import get_mitre_mapping
-from langchain_community.chat_models import ChatOllama
-from langchain_core.messages import SystemMessage, HumanMessage
+
 
 def parser_node(state: AgentState):
     """Ingests and normalizes uploaded artifacts."""
@@ -55,7 +57,7 @@ def endpoint_analyst_node(state: AgentState):
             
     chat = get_llm(state)
     sys_msg = SystemMessage(content="You are the Endpoint Forensics Expert. Summarize the Windows event logs and Sigma matches, identifying potential execution, persistence, or privilege escalation. Be concise.")
-    user_msg = HumanMessage(content=f"Analyze these endpoint artifacts:\n{str(enriched[:15])}")
+    user_msg = HumanMessage(content=f"Analyze these endpoint artifacts:\n{enriched[:15]!s}")
     
     response = chat.invoke([sys_msg, user_msg])
     return {"endpoint_summary": response.content}
@@ -71,7 +73,7 @@ def network_analyst_node(state: AgentState):
         
     chat = get_llm(state)
     sys_msg = SystemMessage(content="You are the Network Forensics Expert. Summarize the PCAP HTTP/DNS logs, looking for C2 beacons, exfiltration, or lateral movement. Be concise.")
-    user_msg = HumanMessage(content=f"Analyze these network artifacts:\n{str([a.model_dump() for a in net_arts[:15]])}")
+    user_msg = HumanMessage(content=f"Analyze these network artifacts:\n{[a.model_dump() for a in net_arts[:15]]!s}")
     
     response = chat.invoke([sys_msg, user_msg])
     return {"network_summary": response.content}
@@ -87,7 +89,7 @@ def memory_analyst_node(state: AgentState):
         
     chat = get_llm(state)
     sys_msg = SystemMessage(content="You are the Memory Forensics Expert. Summarize the running processes, network connections, and YARA malware signatures found in RAM. Be concise.")
-    user_msg = HumanMessage(content=f"Analyze these memory artifacts:\n{str([a.model_dump() for a in mem_arts[:15]])}")
+    user_msg = HumanMessage(content=f"Analyze these memory artifacts:\n{[a.model_dump() for a in mem_arts[:15]]!s}")
     
     response = chat.invoke([sys_msg, user_msg])
     return {"memory_summary": response.content}
@@ -113,7 +115,7 @@ def reporter_node(state: AgentState):
     timeline = state.get("timeline", "")
     artifacts = state.get("artifacts", [])
     
-    report = f"# Multi-Agent Forensic Investigation Report\n\n"
+    report = "# Multi-Agent Forensic Investigation Report\n\n"
     report += "## Attack Timeline & Narrative\n"
     report += f"{timeline}\n\n"
     

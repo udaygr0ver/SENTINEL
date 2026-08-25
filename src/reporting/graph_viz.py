@@ -1,4 +1,5 @@
-from streamlit_agraph import agraph, Node, Edge, Config
+from streamlit_agraph import Config, Edge, Node, agraph
+
 
 def render_attack_graph(artifacts):
     nodes_map = {}

@@ -1,5 +1,7 @@
-from pydantic import BaseModel, Field
 from typing import Optional
+
+from pydantic import BaseModel, Field
+
 
 class ForensicArtifact(BaseModel):
     timestamp: str = Field(..., description="ISO 8601 timestamp of the event")

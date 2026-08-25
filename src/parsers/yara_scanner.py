@@ -1,6 +1,8 @@
 import os
+from datetime import datetime, timezone
+
 import yara
-from datetime import datetime
+
 from src.schema import ForensicArtifact
 
 # Determine the absolute path to the rules directory
@@ -46,7 +48,7 @@ def scan_file(file_path: str):
             mitre = match.meta.get('mitre', 'Unknown')
             
             artifact = ForensicArtifact(
-                timestamp=datetime.utcnow().isoformat() + "Z",
+                timestamp=datetime.now(timezone.utc).isoformat() + "Z",
                 source_type="YARA_MATCH",
                 host="SCAN",
                 user="SYSTEM",

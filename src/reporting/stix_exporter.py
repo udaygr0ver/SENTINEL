@@ -1,6 +1,7 @@
 import json
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
+
 
 def generate_stix_bundle(enriched_data, report_text):
     """Generates a STIX 2.1 JSON bundle from the findings."""
@@ -12,11 +13,11 @@ def generate_stix_bundle(enriched_data, report_text):
         "type": "report",
         "id": report_id,
         "spec_version": "2.1",
-        "created": datetime.utcnow().isoformat() + "Z",
-        "modified": datetime.utcnow().isoformat() + "Z",
+        "created": datetime.now(timezone.utc).isoformat() + "Z",
+        "modified": datetime.now(timezone.utc).isoformat() + "Z",
         "name": "Autonomous Forensic Agent Investigation Report",
         "description": report_text,
-        "published": datetime.utcnow().isoformat() + "Z",
+        "published": datetime.now(timezone.utc).isoformat() + "Z",
         "object_refs": []
     }
     
@@ -29,12 +30,12 @@ def generate_stix_bundle(enriched_data, report_text):
                 "type": "indicator",
                 "id": indicator_id,
                 "spec_version": "2.1",
-                "created": datetime.utcnow().isoformat() + "Z",
-                "modified": datetime.utcnow().isoformat() + "Z",
+                "created": datetime.now(timezone.utc).isoformat() + "Z",
+                "modified": datetime.now(timezone.utc).isoformat() + "Z",
                 "name": f"Malicious IP/Domain: {ioc}",
                 "pattern_type": "stix",
                 "pattern": f"[ipv4-addr:value = '{ioc}']" if "." in ioc and not ioc.isalpha() else f"[domain-name:value = '{ioc}']",
-                "valid_from": datetime.utcnow().isoformat() + "Z"
+                "valid_from": datetime.now(timezone.utc).isoformat() + "Z"
             }
             objects.append(indicator)
             report_obj["object_refs"].append(indicator_id)

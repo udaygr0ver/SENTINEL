@@ -1,5 +1,6 @@
 import json
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
 from src.parsers.mem_parser import parse_memory
 
 # Mock output for windows.pslist

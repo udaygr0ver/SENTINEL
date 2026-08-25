@@ -1,10 +1,11 @@
-from fastapi import FastAPI, UploadFile, File, Form, BackgroundTasks, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from typing import List, Optional
 import os
 import shutil
-from src.db.case_manager import create_case, update_case, get_all_cases, get_case
+
+from fastapi import BackgroundTasks, FastAPI, File, Form, HTTPException, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
+
 from src.agent.graph import build_forensic_graph
+from src.db.case_manager import create_case, get_all_cases, get_case, update_case
 from src.enrichment.threat_intel import enrich_iocs
 
 app = FastAPI(
@@ -22,7 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def run_analysis_task(case_id: str, file_paths: List[str], llm_model: str, vt_key: str, abuse_key: str):
+def run_analysis_task(case_id: str, file_paths: list[str], llm_model: str, vt_key: str, abuse_key: str):
     """Background task to run the LangGraph pipeline."""
     try:
         graph = build_forensic_graph()
@@ -66,10 +67,10 @@ def run_analysis_task(case_id: str, file_paths: List[str], llm_model: str, vt_ke
 @app.post("/api/v1/analyze")
 async def analyze_artifacts(
     background_tasks: BackgroundTasks,
-    files: List[UploadFile] = File(...),
+    files: list[UploadFile] = File(...),
     llm_model: str = Form("llama3.1"),
-    vt_key: Optional[str] = Form(""),
-    abuse_key: Optional[str] = Form("")
+    vt_key: str | None = Form(""),
+    abuse_key: str | None = Form("")
 ):
     """Uploads forensic artifacts and starts analysis asynchronously."""
     case_id = create_case(llm_model)

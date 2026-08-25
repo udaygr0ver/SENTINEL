@@ -1,6 +1,9 @@
 import base64
+
 from langchain_core.tools import tool
+
 from src.kb.retriever import get_mitre_mapping
+
 
 @tool
 def lookup_mitre(query: str) -> str:

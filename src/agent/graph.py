@@ -1,13 +1,15 @@
-from langgraph.graph import StateGraph, END
-from src.agent.state import AgentState
+from langgraph.graph import END, StateGraph
+
 from src.agent.nodes import (
-    parser_node,
-    endpoint_analyst_node,
-    network_analyst_node,
-    memory_analyst_node,
     correlation_agent_node,
-    reporter_node
+    endpoint_analyst_node,
+    memory_analyst_node,
+    network_analyst_node,
+    parser_node,
+    reporter_node,
 )
+from src.agent.state import AgentState
+
 
 def build_forensic_graph():
     """Builds the multi-agent LangGraph state machine."""
