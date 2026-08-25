@@ -31,7 +31,9 @@ def parser_node(state: AgentState):
 
 def get_llm(state: AgentState):
     model_name = state.get("llm_model", "llama3.1")
-    return ChatOllama(model=model_name)
+    import os
+    base_url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
+    return ChatOllama(model=model_name, base_url=base_url)
 
 def endpoint_analyst_node(state: AgentState):
     """Analyzes EVTX logs and Sigma matches."""
