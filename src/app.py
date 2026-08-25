@@ -1,13 +1,15 @@
+from src.schema import ForensicArtifact
+from src.db.case_manager import create_case, update_case, get_all_cases, get_case
+from src.reporting.stix_exporter import generate_stix_bundle
+from src.agent.graph import build_forensic_graph
+from datetime import datetime
+import time
+import json
+import streamlit as st
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import streamlit as st
-import json
-import time
-from datetime import datetime
-from src.agent.graph import build_forensic_graph
-from src.reporting.stix_exporter import generate_stix_bundle
 
 # ──────────────────────────────────────────────
 # Page Config
@@ -420,9 +422,17 @@ with st.sidebar:
 
     st.markdown("---")
 
+    st.markdown("##### 🔍 Navigation")
+    app_mode = st.radio(
+        "Mode", ["🆕 New Investigation", "📂 Case History"], label_visibility="collapsed")
+
+    st.markdown("---")
+
     st.markdown("##### ⚙️ Engine Configuration")
-    llm_model = st.selectbox("LLM Model", ["llama3.1", "mistral", "llama3.1:70b"], index=0)
-    embedding_model = st.selectbox("Embedding Model", ["all-MiniLM-L6-v2"], index=0)
+    llm_model = st.selectbox(
+        "LLM Model", ["llama3.1", "mistral", "llama3.1:70b"], index=0)
+    embedding_model = st.selectbox(
+        "Embedding Model", ["all-MiniLM-L6-v2"], index=0)
     top_k = st.slider("RAG Top-K Results", 1, 10, 3)
 
     st.markdown("---")
@@ -459,266 +469,310 @@ with st.sidebar:
 
 
 # ──────────────────────────────────────────────
-# Hero Banner
-# ──────────────────────────────────────────────
-st.markdown("""
-<div class="hero-banner">
-    <p class="hero-title">SENTINEL</p>
-    <p class="hero-subtitle">
-        AI-Powered Autonomous Forensic Analysis • Upload forensic artifacts to automatically 
-        parse, enrich via MITRE ATT&CK, correlate with LLM reasoning, and generate STIX 2.1 IOC reports.
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
 
 # ──────────────────────────────────────────────
-# Pipeline Visualization
+# Main Application Flow
 # ──────────────────────────────────────────────
-st.markdown("""
-<div class="pipeline-steps">
-    <div class="pipeline-step">📥 Upload</div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-step">🔍 Parse</div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-step">🧠 Enrich</div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-step">⚡ Correlate</div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-step">📄 Report</div>
-</div>
-""", unsafe_allow_html=True)
-
-
-# ──────────────────────────────────────────────
-# Upload Section
-# ──────────────────────────────────────────────
-st.markdown("""
-<div class="section-card">
-    <div class="section-header">
-        <span class="section-icon">📤</span>
-        <p class="section-title">Upload Forensic Artifacts</p>
+if app_mode == "🆕 New Investigation":
+    st.markdown('''
+    <div class="hero-banner">
+        <p class="hero-title">SENTINEL</p>
+        <p class="hero-subtitle">
+            AI-Powered Autonomous Forensic Analysis • Upload forensic artifacts to automatically 
+            parse, enrich via MITRE ATT&CK, correlate with LLM reasoning, and generate STIX 2.1 IOC reports.
+        </p>
     </div>
-</div>
-""", unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
-uploaded_files = st.file_uploader(
-    "Drag and drop files here",
-    accept_multiple_files=True,
-    type=["evtx", "pcap", "cap", "raw", "mem", "vmem"],
-    label_visibility="collapsed"
-)
+    st.markdown('''
+    <div class="pipeline-steps">
+        <div class="pipeline-step">📥 Upload</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">🔍 Parse</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">🧠 Enrich</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">⚡ Correlate</div>
+        <div class="pipeline-arrow">→</div>
+        <div class="pipeline-step">📄 Report</div>
+    </div>
+    ''', unsafe_allow_html=True)
 
-col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 4])
-with col_btn1:
-    run_btn = st.button("🚀 Run Analysis", use_container_width=True)
-with col_btn2:
-    if st.button("🗑️ Clear", use_container_width=True):
-        st.rerun()
+    st.markdown('''
+    <div class="section-card">
+        <div class="section-header">
+            <span class="section-icon">📤</span>
+            <p class="section-title">Upload Forensic Artifacts</p>
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
 
-# ──────────────────────────────────────────────
-# Analysis Execution
-# ──────────────────────────────────────────────
-if run_btn and uploaded_files:
-    start_time = time.time()
+    uploaded_files = st.file_uploader(
+        "Drag and drop files here",
+        accept_multiple_files=True,
+        type=["evtx", "pcap", "cap", "raw", "mem", "vmem"],
+        label_visibility="collapsed"
+    )
 
-    # Save uploaded files
-    os.makedirs("temp_uploads", exist_ok=True)
-    file_paths = []
-    for f in uploaded_files:
-        fp = os.path.join("temp_uploads", f.name)
-        with open(fp, "wb") as out:
-            out.write(f.read())
-        file_paths.append(fp)
+    col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 4])
+    with col_btn1:
+        run_btn = st.button("🚀 Run Analysis", use_container_width=True)
+    with col_btn2:
+        if st.button("🗑️ Clear", use_container_width=True):
+            st.rerun()
 
-    # Progress
-    progress = st.progress(0, text="Initializing agent pipeline...")
-    status_box = st.empty()
+    if run_btn and uploaded_files:
+        start_time = time.time()
 
-    try:
-        # Step 1
-        progress.progress(10, text="📥 Step 1/4 — Parsing uploaded artifacts...")
-        status_box.info("🔍 **Parser Node** — Extracting events from uploaded files...")
-        
-        app = build_forensic_graph()
-        state_input = {
-            "file_paths": file_paths, 
-            "llm_model": llm_model,
-            "artifacts": [], 
-            "endpoint_summary": "",
-            "network_summary": "",
-            "memory_summary": "",
-            "timeline": "",
-            "report": ""
-        }
-        
-        final_state = state_input
-        
-        # Use stream to show progress dynamically
-        for output in app.stream(state_input):
-            for node_name, state_update in output.items():
-                if node_name == "parser":
-                    progress.progress(20, text="📥 Artifact parsing complete.")
-                    status_box.info("🔍 Extracted artifacts and ran YARA/Sigma deterministic checks.")
-                elif node_name == "endpoint_agent":
-                    progress.progress(40, text="💻 Endpoint Analyst running...")
-                    status_box.info("💻 **Endpoint Agent** is summarizing EVTX and Sigma matches.")
-                elif node_name == "network_agent":
-                    progress.progress(60, text="🌐 Network Analyst running...")
-                    status_box.info("🌐 **Network Agent** is summarizing PCAP and HTTP traffic.")
-                elif node_name == "memory_agent":
-                    progress.progress(80, text="🧠 Memory Analyst running...")
-                    status_box.info("🧠 **Memory Agent** is summarizing process injections and YARA matches.")
-                elif node_name == "correlation":
-                    progress.progress(90, text="⚡ Lead SOC Analyst correlating...")
-                    status_box.info("⚡ **Lead Agent** is fusing intelligence into a chronological narrative.")
-                elif node_name == "reporter":
-                    progress.progress(95, text="📄 Generating reports...")
-                    status_box.info("📄 Compiling STIX 2.1 bundle and Markdown report.")
-                
-                # Merge updates into our final state tracker
-                final_state.update(state_update)
+        # ── CREATE DB CASE ──
+        case_id = create_case(llm_model)
 
-        elapsed = round(time.time() - start_time, 1)
-        progress.progress(100, text="✅ Analysis complete!")
-        status_box.empty()
+        os.makedirs("temp_uploads", exist_ok=True)
+        file_paths = []
+        for f in uploaded_files:
+            fp = os.path.join("temp_uploads", f.name)
+            with open(fp, "wb") as out:
+                out.write(f.read())
+            file_paths.append(fp)
 
-        # ── Stats Row ──
-        artifacts = final_state.get("artifacts", [])
-        iocs = [a for a in artifacts if a.ioc_detected]
-        ttps = set()
-        
-        # Note: We removed the old 'enriched_data' dictionary wrapper in the new architecture. 
-        # Mitre tags are now stored directly in the details for Sigma/YARA, but for simplicity 
-        # in the UI we will just count IOCs and artifacts here.
-        # If MITRE tags were extracted properly, we could parse them from details.
+        progress = st.progress(0, text="Initializing agent pipeline...")
+        status_box = st.empty()
+
+        try:
+            app = build_forensic_graph()
+            state_input = {
+                "file_paths": file_paths,
+                "llm_model": llm_model,
+                "artifacts": [],
+                "endpoint_summary": "",
+                "network_summary": "",
+                "memory_summary": "",
+                "timeline": "",
+                "report": ""
+            }
+
+            final_state = state_input
+
+            for output in app.stream(state_input):
+                for node_name, state_update in output.items():
+                    if node_name == "parser":
+                        progress.progress(
+                            20, text="📥 Artifact parsing complete.")
+                        status_box.info(
+                            "🔍 Extracted artifacts and ran YARA/Sigma deterministic checks.")
+                    elif node_name == "endpoint_agent":
+                        progress.progress(
+                            40, text="💻 Endpoint Analyst running...")
+                        status_box.info(
+                            "💻 **Endpoint Agent** is summarizing EVTX and Sigma matches.")
+                    elif node_name == "network_agent":
+                        progress.progress(
+                            60, text="🌐 Network Analyst running...")
+                        status_box.info(
+                            "🌐 **Network Agent** is summarizing PCAP and HTTP traffic.")
+                    elif node_name == "memory_agent":
+                        progress.progress(
+                            80, text="🧠 Memory Analyst running...")
+                        status_box.info(
+                            "🧠 **Memory Agent** is summarizing process injections and YARA matches.")
+                    elif node_name == "correlation":
+                        progress.progress(
+                            90, text="⚡ Lead SOC Analyst correlating...")
+                        status_box.info(
+                            "⚡ **Lead Agent** is fusing intelligence into a chronological narrative.")
+                    elif node_name == "reporter":
+                        progress.progress(95, text="📄 Generating reports...")
+                        status_box.info(
+                            "📄 Compiling STIX 2.1 bundle and Markdown report.")
+
+                    final_state.update(state_update)
+
+            # ── UPDATE DB CASE ──
+            update_case(case_id, final_state)
+
+            elapsed = round(time.time() - start_time, 1)
+            progress.progress(
+                100, text=f"✅ Analysis complete! (Case ID: {case_id[:8]})")
+            status_box.empty()
+
+            st.session_state.final_state = final_state
+            st.session_state.elapsed = elapsed
+
+        except Exception as e:
+            progress.empty()
+            status_box.empty()
+            st.error(f"❌ **Pipeline Error:** {e}")
+            import traceback
+            st.code(traceback.format_exc())
+
+elif app_mode == "📂 Case History":
+    st.markdown('''
+    <div class="hero-banner">
+        <p class="hero-title">Case Management</p>
+        <p class="hero-subtitle">Review previous autonomous forensic investigations.</p>
+    </div>
+    ''', unsafe_allow_html=True)
+
+    cases = get_all_cases()
+    if not cases:
+        st.info("No past investigations found.")
+    else:
+        for c in cases:
+            with st.container():
+                col1, col2, col3 = st.columns([3, 1, 1])
+                # Format time string gracefully
+                dt = c['timestamp'][:16].replace('T', ' ')
+                status_clr = "green" if c['status'] == "COMPLETED" else "orange"
+                col1.markdown(
+                    f"**Case:** `{c['id'][:8]}` &nbsp;|&nbsp; **Time:** {dt} &nbsp;|&nbsp; **Status:** <span style='color:{status_clr};'>{c['status']}</span>", unsafe_allow_html=True)
+                col2.write(f"🤖 {c['llm_model']}")
+                if col3.button("📂 View Report", key=c['id']):
+                    st.session_state.loaded_case = c['id']
+
+        if 'loaded_case' in st.session_state:
+            st.markdown("---")
+            loaded = get_case(st.session_state.loaded_case)
+            st.markdown(f"### 📋 Active Case: `{loaded['id']}`")
+
+            artifacts = [ForensicArtifact(**a) for a in loaded['artifacts']]
+            st.session_state.final_state = {
+                "artifacts": artifacts,
+                "timeline": loaded['timeline'],
+                "endpoint_summary": loaded['endpoint_summary'],
+                "network_summary": loaded['network_summary'],
+                "memory_summary": loaded['memory_summary'],
+                "report": loaded['report']
+            }
+            st.session_state.elapsed = "Archived"
 
 
-        st.markdown(f"""
-        <div class="stat-row">
-            <div class="stat-card">
-                <p class="stat-value cyan">{len(artifacts)}</p>
-                <p class="stat-label">Artifacts Parsed</p>
-            </div>
-            <div class="stat-card">
-                <p class="stat-value red">{len(iocs)}</p>
-                <p class="stat-label">IOCs Detected</p>
-            </div>
-            <div class="stat-card">
-                <p class="stat-value purple">N/A</p>
-                <p class="stat-label">MITRE TTPs Mapped</p>
-            </div>
-            <div class="stat-card">
-                <p class="stat-value amber">{elapsed}s</p>
-                <p class="stat-label">Analysis Time</p>
+if 'final_state' in st.session_state:
+    final_state = st.session_state.final_state
+    elapsed = st.session_state.elapsed
+    artifacts = final_state.get("artifacts", [])
+    iocs = [a for a in artifacts if a.ioc_detected]
+    ttps = set()
+
+    # Note: We removed the old 'enriched_data' dictionary wrapper in the new architecture.
+    # Mitre tags are now stored directly in the details for Sigma/YARA, but for simplicity
+    # in the UI we will just count IOCs and artifacts here.
+    # If MITRE tags were extracted properly, we could parse them from details.
+
+    st.markdown(f"""
+    <div class="stat-row">
+        <div class="stat-card">
+            <p class="stat-value cyan">{len(artifacts)}</p>
+            <p class="stat-label">Artifacts Parsed</p>
+        </div>
+        <div class="stat-card">
+            <p class="stat-value red">{len(iocs)}</p>
+            <p class="stat-label">IOCs Detected</p>
+        </div>
+        <div class="stat-card">
+            <p class="stat-value purple">N/A</p>
+            <p class="stat-label">MITRE TTPs Mapped</p>
+        </div>
+        <div class="stat-card">
+            <p class="stat-value amber">{elapsed}s</p>
+            <p class="stat-label">Analysis Time</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ── Results Tabs ──
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(
+        ["📊 Timeline", "🤖 Agent Summaries", "🎯 IOCs & Evidence", "📋 Full Report", "🔐 STIX 2.1"])
+
+    with tab1:
+        st.markdown("""
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <p class="section-title">Attack Timeline & Narrative</p>
+                <span class="status-badge status-critical">INCIDENT</span>
             </div>
         </div>
         """, unsafe_allow_html=True)
 
-        # ── Results Tabs ──
-        tab1, tab2, tab3, tab4, tab5 = st.tabs(["📊 Timeline", "🤖 Agent Summaries", "🎯 IOCs & Evidence", "📋 Full Report", "🔐 STIX 2.1"])
+        st.markdown(final_state.get("timeline", "No timeline generated."))
 
-        with tab1:
-            st.markdown("""
-            <div class="section-card">
-                <div class="section-header">
-                    <span class="section-icon">📊</span>
-                    <p class="section-title">Attack Timeline & Narrative</p>
-                    <span class="status-badge status-critical">INCIDENT</span>
+    with tab2:
+        st.markdown("#### 💻 Endpoint Agent")
+        st.info(final_state.get("endpoint_summary", "No summary."))
+        st.markdown("#### 🌐 Network Agent")
+        st.info(final_state.get("network_summary", "No summary."))
+        st.markdown("#### 🧠 Memory Agent")
+        st.info(final_state.get("memory_summary", "No summary."))
+
+    with tab3:
+        st.markdown("#### 🎯 Extracted IOCs")
+        ioc_html = ""
+        seen_iocs = set()
+        for a in artifacts:
+            ioc = a.ioc_detected
+            if ioc and ioc not in seen_iocs:
+                ioc_html += f'<span class="ioc-tag">{ioc}</span>\n'
+                seen_iocs.add(ioc)
+        if ioc_html:
+            st.markdown(ioc_html, unsafe_allow_html=True)
+        else:
+            st.caption("No IOCs detected.")
+
+        st.markdown("---")
+        st.markdown("#### 🕐 Extracted Evidence")
+        for a in artifacts:
+            dot_color = "#ef476f" if a.ioc_detected else "#06d6a0"
+            st.markdown(f"""
+            <div class="timeline-event">
+                <div class="timeline-dot" style="background: {dot_color};"></div>
+                <div class="timeline-content">
+                    <div class="timeline-time">{a.timestamp}</div>
+                    <div class="timeline-desc">{a.details}</div>
+                    <div class="timeline-source">{a.source_type} • {a.host} • {a.user}</div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
 
-            st.markdown(final_state.get("timeline", "No timeline generated."))
-
-        with tab2:
-            st.markdown("#### 💻 Endpoint Agent")
-            st.info(final_state.get("endpoint_summary", "No summary."))
-            st.markdown("#### 🌐 Network Agent")
-            st.info(final_state.get("network_summary", "No summary."))
-            st.markdown("#### 🧠 Memory Agent")
-            st.info(final_state.get("memory_summary", "No summary."))
-
-        with tab3:
-            st.markdown("#### 🎯 Extracted IOCs")
-            ioc_html = ""
-            seen_iocs = set()
-            for a in artifacts:
-                ioc = a.ioc_detected
-                if ioc and ioc not in seen_iocs:
-                    ioc_html += f'<span class="ioc-tag">{ioc}</span>\n'
-                    seen_iocs.add(ioc)
-            if ioc_html:
-                st.markdown(ioc_html, unsafe_allow_html=True)
-            else:
-                st.caption("No IOCs detected.")
-                
-            st.markdown("---")
-            st.markdown("#### 🕐 Extracted Evidence")
-            for a in artifacts:
-                dot_color = "#ef476f" if a.ioc_detected else "#06d6a0"
-                st.markdown(f"""
-                <div class="timeline-event">
-                    <div class="timeline-dot" style="background: {dot_color};"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-time">{a.timestamp}</div>
-                        <div class="timeline-desc">{a.details}</div>
-                        <div class="timeline-source">{a.source_type} • {a.host} • {a.user}</div>
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
-
-
-
-        with tab3:
-            st.markdown("""
-            <div class="section-card">
-                <div class="section-header">
-                    <span class="section-icon">📋</span>
-                    <p class="section-title">Full Forensic Report</p>
-                    <span class="status-badge status-active">GENERATED</span>
-                </div>
+    with tab3:
+        st.markdown("""
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-icon">📋</span>
+                <p class="section-title">Full Forensic Report</p>
+                <span class="status-badge status-active">GENERATED</span>
             </div>
-            """, unsafe_allow_html=True)
+        </div>
+        """, unsafe_allow_html=True)
 
-            report_text = final_state.get("report", "No report generated.")
-            st.markdown(report_text)
+        report_text = final_state.get("report", "No report generated.")
+        st.markdown(report_text)
 
-            st.download_button(
-                "⬇️ Download Report (Markdown)",
-                data=report_text,
-                file_name=f"sentinel_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md",
-                mime="text/markdown"
-            )
+        st.download_button(
+            "⬇️ Download Report (Markdown)",
+            data=report_text,
+            file_name=f"sentinel_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md",
+            mime="text/markdown"
+        )
 
-        with tab4:
-            st.markdown("""
-            <div class="section-card">
-                <div class="section-header">
-                    <span class="section-icon">🔐</span>
-                    <p class="section-title">STIX 2.1 Bundle</p>
-                </div>
+    with tab4:
+        st.markdown("""
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-icon">🔐</span>
+                <p class="section-title">STIX 2.1 Bundle</p>
             </div>
-            """, unsafe_allow_html=True)
+        </div>
+        """, unsafe_allow_html=True)
 
-            stix_data = generate_stix_bundle(artifacts, report_text)
-            st.json(json.loads(stix_data))
+        stix_data = generate_stix_bundle(artifacts, report_text)
+        st.json(json.loads(stix_data))
 
-            st.download_button(
-                "⬇️ Download STIX 2.1 JSON",
-                data=stix_data,
-                file_name=f"sentinel_stix_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
-                mime="application/json"
-            )
-
-    except Exception as e:
-        progress.empty()
-        status_box.empty()
-        st.error(f"❌ **Pipeline Error:** {e}")
-        with st.expander("🔍 Full Traceback"):
-            import traceback
-            st.code(traceback.format_exc())
-
+        st.download_button(
+            "⬇️ Download STIX 2.1 JSON",
+            data=stix_data,
+            file_name=f"sentinel_stix_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+            mime="application/json"
+        )
 
 # ──────────────────────────────────────────────
 # Footer
