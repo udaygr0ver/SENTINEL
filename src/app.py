@@ -541,35 +541,63 @@ if run_btn and uploaded_files:
         status_box.info("🔍 **Parser Node** — Extracting events from uploaded files...")
         
         app = build_forensic_graph()
-        state_input = {"file_paths": file_paths, "artifacts": [], "enriched_data": []}
+        state_input = {
+            "file_paths": file_paths, 
+            "llm_model": llm_model,
+            "artifacts": [], 
+            "endpoint_summary": "",
+            "network_summary": "",
+            "memory_summary": "",
+            "timeline": "",
+            "report": ""
+        }
         
-        progress.progress(30, text="🧠 Step 2/4 — Enriching with MITRE ATT&CK...")
-        status_box.info("🧠 **Enrichment Node** — Querying ChromaDB for MITRE technique mappings...")
-
-        progress.progress(50, text="⚡ Step 3/4 — LLM Correlation & Timeline...")
-        status_box.info(f"⚡ **Correlation Node** — Sending to `{llm_model}` for attack narrative generation...")
-
-        final_state = app.invoke(state_input)
-
-        progress.progress(90, text="📄 Step 4/4 — Generating reports...")
-        status_box.info("📄 **Reporter Node** — Compiling STIX 2.1 bundle and forensic report...")
+        final_state = state_input
+        
+        # Use stream to show progress dynamically
+        for output in app.stream(state_input):
+            for node_name, state_update in output.items():
+                if node_name == "parser":
+                    progress.progress(20, text="📥 Artifact parsing complete.")
+                    status_box.info("🔍 Extracted artifacts and ran YARA/Sigma deterministic checks.")
+                elif node_name == "endpoint_agent":
+                    progress.progress(40, text="💻 Endpoint Analyst running...")
+                    status_box.info("💻 **Endpoint Agent** is summarizing EVTX and Sigma matches.")
+                elif node_name == "network_agent":
+                    progress.progress(60, text="🌐 Network Analyst running...")
+                    status_box.info("🌐 **Network Agent** is summarizing PCAP and HTTP traffic.")
+                elif node_name == "memory_agent":
+                    progress.progress(80, text="🧠 Memory Analyst running...")
+                    status_box.info("🧠 **Memory Agent** is summarizing process injections and YARA matches.")
+                elif node_name == "correlation":
+                    progress.progress(90, text="⚡ Lead SOC Analyst correlating...")
+                    status_box.info("⚡ **Lead Agent** is fusing intelligence into a chronological narrative.")
+                elif node_name == "reporter":
+                    progress.progress(95, text="📄 Generating reports...")
+                    status_box.info("📄 Compiling STIX 2.1 bundle and Markdown report.")
+                
+                # Merge updates into our final state tracker
+                final_state.update(state_update)
 
         elapsed = round(time.time() - start_time, 1)
         progress.progress(100, text="✅ Analysis complete!")
         status_box.empty()
 
         # ── Stats Row ──
-        enriched = final_state.get("enriched_data", [])
-        iocs = [d for d in enriched if d['artifact'].get('ioc_detected')]
+        artifacts = final_state.get("artifacts", [])
+        iocs = [a for a in artifacts if a.ioc_detected]
         ttps = set()
-        for d in enriched:
-            for m in d.get('mitre_matches', []):
-                ttps.add(m['technique_id'])
+        
+        # Note: We removed the old 'enriched_data' dictionary wrapper in the new architecture. 
+        # Mitre tags are now stored directly in the details for Sigma/YARA, but for simplicity 
+        # in the UI we will just count IOCs and artifacts here.
+        # If MITRE tags were extracted properly, we could parse them from details.
+
 
         st.markdown(f"""
         <div class="stat-row">
             <div class="stat-card">
-                <p class="stat-value cyan">{len(enriched)}</p>
+                <p class="stat-value cyan">{len(artifacts)}</p>
                 <p class="stat-label">Artifacts Parsed</p>
             </div>
             <div class="stat-card">
@@ -577,7 +605,7 @@ if run_btn and uploaded_files:
                 <p class="stat-label">IOCs Detected</p>
             </div>
             <div class="stat-card">
-                <p class="stat-value purple">{len(ttps)}</p>
+                <p class="stat-value purple">N/A</p>
                 <p class="stat-label">MITRE TTPs Mapped</p>
             </div>
             <div class="stat-card">
@@ -588,7 +616,7 @@ if run_btn and uploaded_files:
         """, unsafe_allow_html=True)
 
         # ── Results Tabs ──
-        tab1, tab2, tab3, tab4 = st.tabs(["📊 Timeline", "🎯 IOCs & TTPs", "📋 Full Report", "🔐 STIX 2.1"])
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(["📊 Timeline", "🤖 Agent Summaries", "🎯 IOCs & Evidence", "📋 Full Report", "🔐 STIX 2.1"])
 
         with tab1:
             st.markdown("""
@@ -603,70 +631,44 @@ if run_btn and uploaded_files:
 
             st.markdown(final_state.get("timeline", "No timeline generated."))
 
-            # Visual timeline of parsed artifacts
+        with tab2:
+            st.markdown("#### 💻 Endpoint Agent")
+            st.info(final_state.get("endpoint_summary", "No summary."))
+            st.markdown("#### 🌐 Network Agent")
+            st.info(final_state.get("network_summary", "No summary."))
+            st.markdown("#### 🧠 Memory Agent")
+            st.info(final_state.get("memory_summary", "No summary."))
+
+        with tab3:
+            st.markdown("#### 🎯 Extracted IOCs")
+            ioc_html = ""
+            seen_iocs = set()
+            for a in artifacts:
+                ioc = a.ioc_detected
+                if ioc and ioc not in seen_iocs:
+                    ioc_html += f'<span class="ioc-tag">{ioc}</span>\n'
+                    seen_iocs.add(ioc)
+            if ioc_html:
+                st.markdown(ioc_html, unsafe_allow_html=True)
+            else:
+                st.caption("No IOCs detected.")
+                
             st.markdown("---")
-            st.markdown("#### 🕐 Parsed Event Timeline")
-            for idx, d in enumerate(enriched):
-                a = d['artifact']
-                dot_color = "#ef476f" if a.get('ioc_detected') else "#06d6a0"
+            st.markdown("#### 🕐 Extracted Evidence")
+            for a in artifacts:
+                dot_color = "#ef476f" if a.ioc_detected else "#06d6a0"
                 st.markdown(f"""
                 <div class="timeline-event">
                     <div class="timeline-dot" style="background: {dot_color};"></div>
                     <div class="timeline-content">
-                        <div class="timeline-time">{a.get('timestamp', 'N/A')}</div>
-                        <div class="timeline-desc">{a.get('details', '')}</div>
-                        <div class="timeline-source">{a.get('source_type', '')} • {a.get('host', '')} • {a.get('user', '')}</div>
+                        <div class="timeline-time">{a.timestamp}</div>
+                        <div class="timeline-desc">{a.details}</div>
+                        <div class="timeline-source">{a.source_type} • {a.host} • {a.user}</div>
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
 
-        with tab2:
-            col_ioc, col_ttp = st.columns(2)
 
-            with col_ioc:
-                st.markdown("""
-                <div class="section-card">
-                    <div class="section-header">
-                        <span class="section-icon">🎯</span>
-                        <p class="section-title">Extracted IOCs</p>
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
-
-                ioc_html = ""
-                seen_iocs = set()
-                for d in enriched:
-                    ioc = d['artifact'].get('ioc_detected')
-                    if ioc and ioc not in seen_iocs:
-                        ioc_html += f'<span class="ioc-tag">{ioc}</span>\n'
-                        seen_iocs.add(ioc)
-                if ioc_html:
-                    st.markdown(ioc_html, unsafe_allow_html=True)
-                else:
-                    st.caption("No IOCs detected.")
-
-            with col_ttp:
-                st.markdown("""
-                <div class="section-card">
-                    <div class="section-header">
-                        <span class="section-icon">🗺️</span>
-                        <p class="section-title">MITRE ATT&CK Mappings</p>
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
-
-                ttp_html = ""
-                seen = set()
-                for d in enriched:
-                    for m in d.get('mitre_matches', []):
-                        tid = m['technique_id']
-                        if tid not in seen:
-                            ttp_html += f'<span class="ttp-badge">⬡ {tid}: {m["name"]}</span>\n'
-                            seen.add(tid)
-                if ttp_html:
-                    st.markdown(ttp_html, unsafe_allow_html=True)
-                else:
-                    st.caption("No TTPs mapped.")
 
         with tab3:
             st.markdown("""
@@ -699,7 +701,7 @@ if run_btn and uploaded_files:
             </div>
             """, unsafe_allow_html=True)
 
-            stix_data = generate_stix_bundle(enriched, report_text)
+            stix_data = generate_stix_bundle(artifacts, report_text)
             st.json(json.loads(stix_data))
 
             st.download_button(

@@ -21,9 +21,8 @@ def generate_stix_bundle(enriched_data, report_text):
     }
     
     # Create indicators for IOCs
-    for d in enriched_data:
-        artifact = d.get('artifact', {})
-        ioc = artifact.get('ioc_detected')
+    for artifact in enriched_data:
+        ioc = artifact.ioc_detected
         if ioc:
             indicator_id = f"indicator--{uuid.uuid4()}"
             indicator = {

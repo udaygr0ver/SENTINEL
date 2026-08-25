@@ -7,11 +7,16 @@ class AgentState(TypedDict):
     # The file path(s) to process
     file_paths: list[str]
     
+    # Selected LLM model
+    llm_model: str
+    
     # Raw parsed artifacts
     artifacts: list[ForensicArtifact]
     
-    # Enriched artifacts (with MITRE mappings)
-    enriched_data: list[dict]
+    # Sub-agent domain summaries
+    endpoint_summary: str
+    network_summary: str
+    memory_summary: str
     
     # Narrative timeline
     timeline: str
