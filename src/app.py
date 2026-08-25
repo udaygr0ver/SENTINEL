@@ -754,7 +754,7 @@ if 'final_state' in st.session_state:
             mime="text/markdown"
         )
 
-    with tab4:
+    with tab5:
         st.markdown("""
         <div class="section-card">
             <div class="section-header">
