@@ -27,7 +27,8 @@ def init_db():
             memory_summary TEXT,
             timeline TEXT,
             report TEXT,
-            artifacts_json TEXT
+            artifacts_json TEXT,
+            threat_intel_json TEXT
         )
     ''')
     conn.commit()
@@ -65,7 +66,8 @@ def update_case(case_id: str, state: dict):
             memory_summary = ?, 
             timeline = ?, 
             report = ?, 
-            artifacts_json = ?
+            artifacts_json = ?,
+            threat_intel_json = ?
         WHERE id = ?
     ''', (
         'COMPLETED',
@@ -75,6 +77,7 @@ def update_case(case_id: str, state: dict):
         state.get('timeline', ''),
         state.get('report', ''),
         json.dumps(artifacts_list),
+        json.dumps(state.get('threat_intel', {})),
         case_id
     ))
     conn.commit()
@@ -99,6 +102,7 @@ def get_case(case_id: str):
     if row:
         case = dict(row)
         case['artifacts'] = json.loads(case['artifacts_json']) if case['artifacts_json'] else []
+        case['threat_intel'] = json.loads(case['threat_intel_json']) if case.get('threat_intel_json') else {}
         return case
     return None
 

@@ -1,4 +1,5 @@
 from src.schema import ForensicArtifact
+from src.enrichment.threat_intel import enrich_iocs
 from src.db.case_manager import create_case, update_case, get_all_cases, get_case
 from src.reporting.stix_exporter import generate_stix_bundle
 from src.agent.graph import build_forensic_graph
@@ -437,6 +438,12 @@ with st.sidebar:
 
     st.markdown("---")
 
+    st.markdown("##### 🌍 Threat Intel APIs (Optional)")
+    vt_api_key = st.text_input("VirusTotal API Key", type="password")
+    abuse_api_key = st.text_input("AbuseIPDB API Key", type="password")
+
+    st.markdown("---")
+
     st.markdown("##### 📁 Supported Formats")
     st.markdown("""
     <div style="font-size: 0.8rem; color: #9ca3af; line-height: 1.8;">
@@ -587,6 +594,15 @@ if app_mode == "🆕 New Investigation":
 
                     final_state.update(state_update)
 
+            # ── EXTERNAL THREAT INTEL ──
+            if vt_api_key or abuse_api_key:
+                progress.progress(98, text="🌍 Querying External Threat Intel APIs...")
+                status_box.info("🌍 Querying VirusTotal and AbuseIPDB...")
+                iocs_to_check = [a.ioc_detected for a in final_state.get("artifacts", []) if a.ioc_detected]
+                final_state["threat_intel"] = enrich_iocs(iocs_to_check, vt_api_key, abuse_api_key)
+            else:
+                final_state["threat_intel"] = {}
+
             # ── UPDATE DB CASE ──
             update_case(case_id, final_state)
 
@@ -641,7 +657,9 @@ elif app_mode == "📂 Case History":
                 "endpoint_summary": loaded['endpoint_summary'],
                 "network_summary": loaded['network_summary'],
                 "memory_summary": loaded['memory_summary'],
-                "report": loaded['report']
+                "report": loaded['report'],
+                "threat_intel": loaded.get('threat_intel', {})
+
             }
             st.session_state.elapsed = "Archived"
 
