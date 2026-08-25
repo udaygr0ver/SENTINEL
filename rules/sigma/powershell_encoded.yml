@@ -1,0 +1,17 @@
+title: Suspicious Encoded PowerShell
+id: dca22194-e53b-48c2-a720-03a0ea3b50c4
+status: test
+description: Detects encoded PowerShell execution via EventID 4688
+author: SENTINEL
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: '4688'
+        CommandLine|contains: 'powershell -enc'
+    condition: selection
+level: high
+tags:
+    - attack.execution
+    - attack.t1059.001

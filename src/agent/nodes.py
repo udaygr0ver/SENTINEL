@@ -2,11 +2,11 @@ from src.agent.state import AgentState
 from src.parsers.evtx_parser import parse_evtx
 from src.parsers.pcap_parser import parse_pcap
 from src.parsers.mem_parser import parse_memory
+from src.parsers.sigma_scanner import scan_artifacts_with_sigma
 from src.parsers.yara_scanner import scan_file
 from src.kb.retriever import get_mitre_mapping
-from langchain_community.llms import Ollama
+from langchain_community.chat_models import ChatOllama
 from langchain_core.messages import SystemMessage, HumanMessage
-
 def parser_node(state: AgentState):
     """Ingests and normalizes uploaded artifacts."""
     print("--- PARSER NODE ---")
@@ -24,6 +24,10 @@ def parser_node(state: AgentState):
             
         # 2. Run YARA signature scanning on ALL uploaded files
         artifacts.extend(scan_file(fp))
+        
+    # 3. Run Sigma rules against the extracted log artifacts
+    sigma_matches = scan_artifacts_with_sigma(artifacts)
+    artifacts.extend(sigma_matches)
             
     return {"artifacts": artifacts}
 
