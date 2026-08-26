@@ -29,6 +29,7 @@ class AgentState(TypedDict):
     # Final STIX / Markdown report
     report: str
     remediation_plan: str
+    threat_hunt_queries: str
     
     # LLM Messages history for the correlation/reasoning node
     messages: Annotated[Sequence[BaseMessage], operator.add]

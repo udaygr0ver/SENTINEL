@@ -664,6 +664,7 @@ elif app_mode == "📂 Case History":
                 "email_summary": loaded.get('email_summary', ''),
                 "report": loaded['report'],
                 "remediation_plan": loaded.get('remediation_plan', ''),
+                "threat_hunt_queries": loaded.get('threat_hunt_queries', ''),
                 "threat_intel": loaded.get('threat_intel', {})
 
             }

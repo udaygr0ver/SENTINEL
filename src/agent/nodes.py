@@ -177,3 +177,35 @@ Provide a concise, 3-4 sentence summary of your findings.''')
     user_msg = HumanMessage(content=f"Email Artifacts: {[a.model_dump() for a in eml_artifacts]}")
     response = llm.invoke([sys_msg, user_msg])
     return {"email_summary": response.content}
+
+
+def threat_hunter_agent(state: AgentState):
+    llm = get_llm(state)
+    
+    iocs = [a.ioc_detected for a in state.get("artifacts", []) if a.ioc_detected]
+    unique_iocs = list(set(iocs))
+    
+    if not unique_iocs and not state.get("timeline"):
+        return {"threat_hunt_queries": "No significant threats detected requiring proactive hunting."}
+
+    sys_msg = SystemMessage(content='''You are an elite SIEM Detection & Threat Hunting Engineer.
+Based on the timeline and identified Indicators of Compromise (IOCs), generate proactive threat hunting queries.
+Your output MUST include:
+1. **Splunk SPL**: A query to search for the malicious IPs, domains, and file hashes across all indexes.
+2. **Microsoft Sentinel / Azure KQL**: A KQL query to hunt for the identified malicious process executions (e.g., DeviceProcessEvents) or network connections (DeviceNetworkEvents).
+3. **Elastic (EQL)**: An Elastic query looking for lateral movement or persistence tied to this threat.
+
+Format the output cleanly in Markdown with code blocks. Do not add any introductory fluff. Provide only the queries and a brief 1-sentence explanation for each.''')
+    
+    user_msg = HumanMessage(content=f'''
+Incident Timeline:
+{state.get("timeline")}
+
+Extracted IOCs:
+{unique_iocs}
+
+Generate the Threat Hunting Queries.
+''')
+    
+    response = llm.invoke([sys_msg, user_msg])
+    return {"threat_hunt_queries": response.content}

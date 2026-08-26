@@ -37,7 +37,8 @@ def run_analysis_task(case_id: str, file_paths: list[str], llm_model: str, vt_ke
             "email_summary": "",
             "timeline": "",
             "report": "",
-            "remediation_plan": ""
+            "remediation_plan": "",
+            "threat_hunt_queries": ""
         }
         
         final_state = state_input
