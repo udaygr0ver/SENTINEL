@@ -30,6 +30,7 @@ class AgentState(TypedDict):
     report: str
     remediation_plan: str
     threat_hunt_queries: str
+    jira_ticket: str
     
     # LLM Messages history for the correlation/reasoning node
     messages: Annotated[Sequence[BaseMessage], operator.add]

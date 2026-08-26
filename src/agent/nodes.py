@@ -209,3 +209,48 @@ Generate the Threat Hunting Queries.
     
     response = llm.invoke([sys_msg, user_msg])
     return {"threat_hunt_queries": response.content}
+
+
+def ticketing_agent(state: AgentState):
+    llm = get_llm(state)
+    
+    iocs = [a.ioc_detected for a in state.get("artifacts", []) if a.ioc_detected]
+    unique_iocs = list(set(iocs))
+    
+    if not unique_iocs and not state.get("timeline"):
+        return {"jira_ticket": '{"status": "No critical findings to escalate."}'}
+
+    sys_msg = SystemMessage(content='''You are an Automated SOC Ticketing Engine.
+Your job is to read the Incident Timeline and Remediation Plan, and output a strict JSON payload representing a Jira REST API POST request to create an Incident ticket.
+The JSON must follow this exact structure:
+{
+    "fields": {
+        "project": {"key": "SOC"},
+        "summary": "CRITICAL INCIDENT: <Brief 5-word summary>",
+        "description": "<Detailed markdown description including timeline and IOCs>",
+        "issuetype": {"name": "Incident"},
+        "priority": {"name": "Highest"},
+        "customfield_1001": "<Actionable Remediation Steps>"
+    }
+}
+Output ONLY valid JSON. Do not include markdown code blocks (```json) around the output, just the raw JSON string.''')
+    
+    user_msg = HumanMessage(content=f'''
+Incident Timeline:
+{state.get("timeline")}
+
+Remediation Plan:
+{state.get("remediation_plan")}
+
+Generate the Jira API JSON payload.
+''')
+    
+    response = llm.invoke([sys_msg, user_msg])
+    
+    # Clean up markdown blocks if the LLM adds them
+    ticket_str = response.content.strip()
+    ticket_str = ticket_str.removeprefix("```json")
+    ticket_str = ticket_str.removeprefix("```")
+    ticket_str = ticket_str.removesuffix("```")
+        
+    return {"jira_ticket": ticket_str.strip()}

@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.express as px
 
+
 def render_timeline_chart(artifacts):
     """
     Takes a list of ForensicArtifacts and returns a Plotly figure

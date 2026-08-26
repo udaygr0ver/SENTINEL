@@ -31,7 +31,8 @@ def init_db():
             artifacts_json TEXT,
             threat_intel_json TEXT,
             remediation_plan TEXT,
-            threat_hunt_queries TEXT
+            threat_hunt_queries TEXT,
+            jira_ticket TEXT
         )
     ''')
     conn.commit()
@@ -73,6 +74,7 @@ def update_case(case_id: str, state: dict):
             artifacts_json = ?,
             remediation_plan = ?,
             threat_hunt_queries = ?,
+            jira_ticket = ?,
             threat_intel_json = ?
         WHERE id = ?
     ''', (
@@ -86,6 +88,7 @@ def update_case(case_id: str, state: dict):
         json.dumps(artifacts_list),
         state.get('remediation_plan', ''),
         state.get('threat_hunt_queries', ''),
+        state.get('jira_ticket', ''),
         json.dumps(state.get('threat_intel', {})),
         case_id
     ))

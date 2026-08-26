@@ -38,7 +38,8 @@ def run_analysis_task(case_id: str, file_paths: list[str], llm_model: str, vt_ke
             "timeline": "",
             "report": "",
             "remediation_plan": "",
-            "threat_hunt_queries": ""
+            "threat_hunt_queries": "",
+            "jira_ticket": ""
         }
         
         final_state = state_input

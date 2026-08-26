@@ -665,6 +665,7 @@ elif app_mode == "📂 Case History":
                 "report": loaded['report'],
                 "remediation_plan": loaded.get('remediation_plan', ''),
                 "threat_hunt_queries": loaded.get('threat_hunt_queries', ''),
+                "jira_ticket": loaded.get('jira_ticket', ''),
                 "threat_intel": loaded.get('threat_intel', {})
 
             }
