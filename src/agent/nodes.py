@@ -158,3 +158,22 @@ Generate the SOAR Remediation Plan.
     
     response = llm.invoke([sys_msg, user_msg])
     return {"remediation_plan": response.content}
+
+
+def email_analyst_agent(state: AgentState):
+    llm = get_llm(state)
+    eml_artifacts = [a for a in state.get("artifacts", []) if a.source_type.startswith("EML_")]
+    if not eml_artifacts:
+        return {"email_summary": "No Email/Phishing artifacts provided."}
+        
+    sys_msg = SystemMessage(content='''You are an expert Phishing & Email Forensics Analyst.
+Review the provided EML headers, URLs, and attachments.
+Identify:
+1. Social Engineering tactics (urgency, spoofing).
+2. Header anomalies (failed SPF/DKIM).
+3. Malicious payloads (suspicious URLs or attachments).
+Provide a concise, 3-4 sentence summary of your findings.''')
+    
+    user_msg = HumanMessage(content=f"Email Artifacts: {[a.model_dump() for a in eml_artifacts]}")
+    response = llm.invoke([sys_msg, user_msg])
+    return {"email_summary": response.content}

@@ -34,6 +34,7 @@ def run_analysis_task(case_id: str, file_paths: list[str], llm_model: str, vt_ke
             "endpoint_summary": "",
             "network_summary": "",
             "memory_summary": "",
+            "email_summary": "",
             "timeline": "",
             "report": "",
             "remediation_plan": ""

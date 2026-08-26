@@ -557,6 +557,7 @@ if app_mode == "🆕 New Investigation":
                 "endpoint_summary": "",
                 "network_summary": "",
                 "memory_summary": "",
+        "email_summary": "",
                 "timeline": "",
                 "report": ""
             }
@@ -660,6 +661,7 @@ elif app_mode == "📂 Case History":
                 "endpoint_summary": loaded['endpoint_summary'],
                 "network_summary": loaded['network_summary'],
                 "memory_summary": loaded['memory_summary'],
+                "email_summary": loaded.get('email_summary', ''),
                 "report": loaded['report'],
                 "remediation_plan": loaded.get('remediation_plan', ''),
                 "threat_intel": loaded.get('threat_intel', {})

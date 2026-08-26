@@ -21,6 +21,7 @@ class AgentState(TypedDict):
     endpoint_summary: str
     network_summary: str
     memory_summary: str
+    email_summary: str
     
     # Narrative timeline
     timeline: str
