@@ -125,3 +125,36 @@ def reporter_node(state: AgentState):
             report += f"- {a.ioc_detected} ({a.source_type})\n"
             
     return {"report": report}
+
+
+def remediation_agent(state: AgentState):
+    llm = get_llm(state)
+    
+    # We only need the IOCs and the timeline to build a remediation plan
+    iocs = [a.ioc_detected for a in state.get("artifacts", []) if a.ioc_detected]
+    unique_iocs = list(set(iocs))
+    
+    if not unique_iocs and not state.get("timeline"):
+        return {"remediation_plan": "No significant threats detected requiring automated remediation."}
+
+    sys_msg = SystemMessage(content='''You are an elite SOC Automation (SOAR) Engineer.
+Based on the timeline and identified Indicators of Compromise (IOCs), generate a highly structured, actionable Remediation Plan.
+Your output MUST include:
+1. **Network Containment**: Exact firewall commands (Windows netsh / Linux iptables) to block the malicious IPs/Domains.
+2. **Endpoint Isolation**: Mock EDR commands (e.g., CrowdStrike Falcon / Microsoft Defender API payloads) to isolate the compromised hosts.
+3. **Custom Detection Rule**: Write a custom Sigma or YARA rule to detect this specific threat in the future based on the provided evidence.
+
+Format the output cleanly in Markdown with code blocks. Do not add any introductory fluff.''')
+    
+    user_msg = HumanMessage(content=f'''
+Incident Timeline:
+{state.get("timeline")}
+
+Extracted IOCs:
+{unique_iocs}
+
+Generate the SOAR Remediation Plan.
+''')
+    
+    response = llm.invoke([sys_msg, user_msg])
+    return {"remediation_plan": response.content}

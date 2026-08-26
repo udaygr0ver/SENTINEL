@@ -35,7 +35,8 @@ def run_analysis_task(case_id: str, file_paths: list[str], llm_model: str, vt_ke
             "network_summary": "",
             "memory_summary": "",
             "timeline": "",
-            "report": ""
+            "report": "",
+            "remediation_plan": ""
         }
         
         final_state = state_input

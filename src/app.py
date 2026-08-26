@@ -2,7 +2,7 @@ import json
 import os
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime
 
 import streamlit as st
 
@@ -661,6 +661,7 @@ elif app_mode == "📂 Case History":
                 "network_summary": loaded['network_summary'],
                 "memory_summary": loaded['memory_summary'],
                 "report": loaded['report'],
+                "remediation_plan": loaded.get('remediation_plan', ''),
                 "threat_intel": loaded.get('threat_intel', {})
 
             }
