@@ -19,7 +19,7 @@ def render_attack_graph(artifacts):
     def add_edge(src, dst, label):
         if src and dst and src in nodes_map and dst in nodes_map:
             # Check if edge already exists
-            if not any(e.source == src and e.to == dst for e in edges):
+            if not any(e.source == src and e.target == dst for e in edges):
                 edges.append(Edge(source=src, target=dst, label=label))
 
     for a in artifacts:

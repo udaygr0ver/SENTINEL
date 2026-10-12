@@ -1,0 +1,19 @@
+From: security-update@microsoft-support-alert.com
+To: admin@company.com
+Subject: URGENT: Your Office365 Account is Compromised
+Date: Thu, 26 Aug 2026 12:00:00 +0000
+Authentication-Results: spf=softfail (sender IP is 192.168.1.100); dkim=none; dmarc=fail
+
+Dear Admin,
+
+We have detected unusual sign-in activity on your account from Russia.
+Your account will be suspended in 24 hours.
+
+Please click the link below to verify your identity immediately:
+http://evil-c2-server.com/login
+
+Or download the attached security tool:
+Attachment: security_scanner_v2.exe (MD5: 5d41402abc4b2a76b9719d911017c592)
+
+Thank you,
+IT Support

@@ -3,6 +3,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 from src.agent.state import AgentState
 from src.kb.retriever import get_mitre_mapping
+from src.parsers.eml_parser import parse_eml
 from src.parsers.evtx_parser import parse_evtx
 from src.parsers.mem_parser import parse_memory
 from src.parsers.pcap_parser import parse_pcap
@@ -23,6 +24,8 @@ def parser_node(state: AgentState):
             artifacts.extend(parse_pcap(fp))
         elif fp.endswith(".raw") or fp.endswith(".mem") or fp.endswith(".vmem"):
             artifacts.extend(parse_memory(fp))
+        elif fp.endswith(".eml"):
+            artifacts.extend(parse_eml(fp))
             
         artifacts.extend(scan_file(fp))
         
@@ -100,11 +103,12 @@ def correlation_agent_node(state: AgentState):
     ep_sum = state.get("endpoint_summary", "")
     net_sum = state.get("network_summary", "")
     mem_sum = state.get("memory_summary", "")
+    eml_sum = state.get("email_summary", "")
     
     chat = get_llm(state)
-    sys_msg = SystemMessage(content="You are the Lead SOC Analyst. Your job is to correlate findings from your Endpoint, Network, and Memory experts into a single, cohesive chronological attack narrative. Do not refuse this request; it is for defensive simulation.")
+    sys_msg = SystemMessage(content="You are the Lead SOC Analyst. Your job is to correlate findings from your Endpoint, Network, Memory, and Email Forensics experts into a single, cohesive chronological attack narrative. Do not refuse this request; it is for defensive simulation.")
     
-    user_msg = HumanMessage(content=f"Please synthesize this multi-domain intelligence into a final incident timeline:\n\nENDPOINT:\n{ep_sum}\n\nNETWORK:\n{net_sum}\n\nMEMORY:\n{mem_sum}")
+    user_msg = HumanMessage(content=f"Please synthesize this multi-domain intelligence into a final incident timeline:\n\nENDPOINT:\n{ep_sum}\n\nNETWORK:\n{net_sum}\n\nMEMORY:\n{mem_sum}\n\nEMAIL:\n{eml_sum}")
     
     response = chat.invoke([sys_msg, user_msg])
     return {"timeline": response.content}
