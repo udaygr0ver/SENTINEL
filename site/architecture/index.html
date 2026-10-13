@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Autonomous Forensic Agent powered by LangGraph, Local LLMs, and RAG.">
+        <meta name="description" content="Autonomous Multi-Agent Digital Forensics & Incident Response Platform powered by LangGraph, Local LLMs, and RAG.">
       
       
         <meta name="author" content="Uday Grover">
@@ -27,7 +27,7 @@
     
     
       
-        <title>Architecture - SENTINEL</title>
+        <title>Architecture & Multi-Agent Flow - SENTINEL</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sentinel-architecture" class="md-skip">
+        <a href="#sentinel-architecture-multi-agent-flow" class="md-skip">
           Skip to content
         </a>
       
@@ -90,9 +90,7 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="SENTINEL" class="md-header__button md-logo" aria-label="SENTINEL" data-md-component="logo">
       
@@ -114,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Architecture
+              Architecture & Multi-Agent Flow
             
           </span>
         </div>
@@ -186,7 +184,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    GitHub
+    udaygr0ver/SENTINEL
   </div>
 </a>
       </div>
@@ -199,6 +197,112 @@
       
       
         
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture & Multi-Agent Flow
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../usage/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Guide & Walkthrough
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../roadmap/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Differentiation & Endterm Roadmap
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../development/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
           
         
       
@@ -213,8 +317,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="SENTINEL" class="md-nav__button md-logo" aria-label="SENTINEL" data-md-component="logo">
       
@@ -232,7 +338,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    GitHub
+    udaygr0ver/SENTINEL
   </div>
 </a>
     </div>
@@ -289,7 +395,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Architecture & Multi-Agent Flow
   
 
     
@@ -307,7 +413,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Architecture & Multi-Agent Flow
   
 
     
@@ -333,10 +439,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#high-level-pipeline" class="md-nav__link">
+  <a href="#high-level-state-machine-langgraph-dag" class="md-nav__link">
     <span class="md-ellipsis">
       
-        High-Level Pipeline
+        🏗️ High-Level State Machine (LangGraph DAG)
       
     </span>
   </a>
@@ -344,22 +450,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#agent-responsibilities" class="md-nav__link">
+  <a href="#detailed-component-breakdown" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent Responsibilities
+        🔍 Detailed Component Breakdown
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Agent Responsibilities">
+    <nav class="md-nav" aria-label="🔍 Detailed Component Breakdown">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-endpoint-agent" class="md-nav__link">
+  <a href="#1-ingestion-normalization-srcschemapy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 💻 Endpoint Agent
+        1. Ingestion &amp; Normalization (src/schema.py)
       
     </span>
   </a>
@@ -367,10 +473,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-network-agent" class="md-nav__link">
+  <a href="#2-deterministic-guardrails-sigma-yara" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 🌐 Network Agent
+        2. Deterministic Guardrails (Sigma &amp; YARA)
       
     </span>
   </a>
@@ -378,21 +484,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-memory-agent" class="md-nav__link">
+  <a href="#3-local-rag-mitre-attck-mapping-srckb" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 🧠 Memory Agent
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-lead-soc-analyst" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. ⚡ Lead SOC Analyst
+        3. Local RAG &amp; MITRE ATT&amp;CK Mapping (src/kb/)
       
     </span>
   </a>
@@ -405,13 +500,80 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#persistent-case-memory" class="md-nav__link">
+  <a href="#the-multi-agent-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Persistent Case Memory
+        🤖 The Multi-Agent Pipeline
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="🤖 The Multi-Agent Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-domain-specialist-agents-fan-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Domain Specialist Agents (Fan-Out)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-lead-soc-correlation-agent-fan-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Lead SOC Correlation Agent (Fan-In)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-closed-loop-action-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Closed-Loop Action Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forensic-data-lifecycle-sqlite-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💾 Forensic Data Lifecycle &amp; SQLite Persistence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💾 Forensic Data Lifecycle &amp; SQLite Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storage-efficiency-instant-replay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Efficiency &amp; Instant Replay
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -437,7 +599,34 @@
   <span class="md-ellipsis">
     
   
-    User Guide
+    User Guide & Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Differentiation & Endterm Roadmap
   
 
     
@@ -464,7 +653,7 @@
   <span class="md-ellipsis">
     
   
-    Extending SENTINEL
+    Developer Guide
   
 
     
@@ -504,10 +693,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#high-level-pipeline" class="md-nav__link">
+  <a href="#high-level-state-machine-langgraph-dag" class="md-nav__link">
     <span class="md-ellipsis">
       
-        High-Level Pipeline
+        🏗️ High-Level State Machine (LangGraph DAG)
       
     </span>
   </a>
@@ -515,22 +704,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#agent-responsibilities" class="md-nav__link">
+  <a href="#detailed-component-breakdown" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent Responsibilities
+        🔍 Detailed Component Breakdown
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Agent Responsibilities">
+    <nav class="md-nav" aria-label="🔍 Detailed Component Breakdown">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-endpoint-agent" class="md-nav__link">
+  <a href="#1-ingestion-normalization-srcschemapy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 💻 Endpoint Agent
+        1. Ingestion &amp; Normalization (src/schema.py)
       
     </span>
   </a>
@@ -538,10 +727,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-network-agent" class="md-nav__link">
+  <a href="#2-deterministic-guardrails-sigma-yara" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 🌐 Network Agent
+        2. Deterministic Guardrails (Sigma &amp; YARA)
       
     </span>
   </a>
@@ -549,21 +738,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-memory-agent" class="md-nav__link">
+  <a href="#3-local-rag-mitre-attck-mapping-srckb" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 🧠 Memory Agent
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-lead-soc-analyst" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. ⚡ Lead SOC Analyst
+        3. Local RAG &amp; MITRE ATT&amp;CK Mapping (src/kb/)
       
     </span>
   </a>
@@ -576,13 +754,80 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#persistent-case-memory" class="md-nav__link">
+  <a href="#the-multi-agent-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Persistent Case Memory
+        🤖 The Multi-Agent Pipeline
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="🤖 The Multi-Agent Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-domain-specialist-agents-fan-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Domain Specialist Agents (Fan-Out)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-lead-soc-correlation-agent-fan-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Lead SOC Correlation Agent (Fan-In)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-closed-loop-action-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Closed-Loop Action Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forensic-data-lifecycle-sqlite-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💾 Forensic Data Lifecycle &amp; SQLite Persistence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💾 Forensic Data Lifecycle &amp; SQLite Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storage-efficiency-instant-replay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Efficiency &amp; Instant Replay
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -606,33 +851,153 @@
   
 
 
-<h1 id="sentinel-architecture">SENTINEL Architecture</h1>
-<p>SENTINEL utilizes a modular, multi-agent AI architecture built on <strong>LangGraph</strong>. By breaking the forensic analysis down into specialized sub-agents, SENTINEL avoids hallucinations, reduces prompt context limits, and allows for deeper analytical reasoning.</p>
-<h2 id="high-level-pipeline">High-Level Pipeline</h2>
-<pre class="mermaid"><code>graph TD
-    A[Upload Artifacts] --&gt; B(Parser Node)
-    B --&gt;|EVTX, PCAP, MEM| C{Supervisor Fan-Out}
-    C --&gt; D[Endpoint Analyst Agent]
-    C --&gt; E[Network Analyst Agent]
-    C --&gt; F[Memory Analyst Agent]
+<h1 id="sentinel-architecture-multi-agent-flow">SENTINEL Architecture &amp; Multi-Agent Flow</h1>
+<p>SENTINEL utilizes a modular, multi-agent AI architecture built on <strong>LangGraph</strong>. By decomposing complex forensic investigations into specialized sub-agents with strict deterministic guardrails, SENTINEL avoids prompt context exhaustion, minimizes hallucinations, and maintains auditable causality chains across multiple forensic domains.</p>
+<hr />
+<h2 id="high-level-state-machine-langgraph-dag">🏗️ High-Level State Machine (LangGraph DAG)</h2>
+<p>The core orchestration engine operates as a Directed Acyclic Graph (DAG) using a shared, strictly typed <code>AgentState</code>:</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph INGESTION["1. Heterogeneous Ingestion &amp; Deterministic Layer"]
+        RAW["Uploaded Telemetry (.evtx, .pcap, .mem, .eml)"] --&gt; PARSER["Parser Node"]
+        PARSER --&gt; SIGMA["Sigma Rule Engine (YAML)"]
+        PARSER --&gt; YARA["YARA Scanner (.yar)"]
+        PARSER --&gt; NORM["ForensicArtifact Normalization (Pydantic)"]
+    end
 
-    D --&gt;|YARA, Sigma, RAG| G[Lead SOC Analyst Agent]
-    E --&gt;|DNS Tunneling, C2| G
-    F --&gt;|Process Hollowing| G
+    subgraph RAG_KB["Local Knowledge Retrieval Layer"]
+        CHROMA[("ChromaDB Vector Store\n(MITRE ATT&amp;CK STIX 2.1)")]
+        NORM -.-&gt; |Semantic Similarity| CHROMA
+    end
 
-    G --&gt;|Chronological Timeline| H[Reporter Node]
-    H --&gt; I(STIX 2.1 Bundle)</code></pre>
-<h2 id="agent-responsibilities">Agent Responsibilities</h2>
-<h3 id="1-endpoint-agent">1. 💻 Endpoint Agent</h3>
-<p>Ingests raw Windows Event Logs (EVTX). It automatically correlates events against the internal Sigma rule engine and enriches matches with MITRE ATT&amp;CK TTPs.</p>
-<h3 id="2-network-agent">2. 🌐 Network Agent</h3>
-<p>Analyzes PCAP traffic. Uses custom logic to flag anomalous DNS requests (calculating Shannon Entropy for DNS Tunneling) and tracks statistical temporal connections to flag C2 Beacons.</p>
-<h3 id="3-memory-agent">3. 🧠 Memory Agent</h3>
-<p>Parses output from Volatility3 memory dumps, detecting malware strings and process injection techniques in RAM.</p>
-<h3 id="4-lead-soc-analyst">4. ⚡ Lead SOC Analyst</h3>
-<p>Fuses the intelligence outputs of the specialized agents. Since each specialized agent summarizes its own domain concisely, the Lead SOC Analyst only processes the most important evidence to construct a unified chronological narrative.</p>
-<h2 id="persistent-case-memory">Persistent Case Memory</h2>
-<p>All cases are tracked asynchronously in a local <strong>SQLite</strong> database (<code>sentinel.db</code>), providing persistent case management without external dependencies.</p>
+    subgraph DOMAIN_AGENTS["2. Domain-Specific Forensic Agents (Fan-Out)"]
+        NORM --&gt; EP["Endpoint Analyst Agent\n(EVTX &amp; Sigma Matches)"]
+        NORM --&gt; NET["Network Analyst Agent\n(PCAP, DNS Entropy, C2 Beacons)"]
+        NORM --&gt; MEM["Memory Analyst Agent\n(Volatility 3 &amp; Injections)"]
+        NORM --&gt; EML["Email Analyst Agent\n(SPF/DKIM &amp; Phishing Lures)"]
+    end
+
+    subgraph CORRELATION["3. Cognitive Synthesis &amp; Correlation (Fan-In)"]
+        EP --&gt; LEAD["Lead SOC Correlation Agent\n(Multi-Domain Timeline Fusion)"]
+        NET --&gt; LEAD
+        MEM --&gt; LEAD
+        EML --&gt; LEAD
+    end
+
+    subgraph CLOSED_LOOP["4. Actionable Response Pipeline"]
+        LEAD --&gt; REP["Reporter Node\n(Markdown &amp; STIX 2.1)"]
+        REP --&gt; SOAR["SOAR Remediation Agent\n(Netsh, Iptables, EDR API)"]
+        SOAR --&gt; HUNT["SIEM Threat Hunter\n(Splunk SPL, KQL, EQL)"]
+        HUNT --&gt; TICKET["Automated Ticketing Engine\n(Jira REST API JSON)"]
+    end
+
+    subgraph PRESENTATION["5. Presentation &amp; SOC Dashboard"]
+        TICKET --&gt; UI["Streamlit SOC Dashboard"]
+        UI --&gt; GANTT["Plotly Chronological Timeline"]
+        UI --&gt; GRAPH["Vis.js Force-Directed Attack Graph"]
+        UI --&gt; SQLITE[("Persistent SQLite Archive\n(sentinel.db)")]
+    end</code></pre>
+<hr />
+<h2 id="detailed-component-breakdown">🔍 Detailed Component Breakdown</h2>
+<h3 id="1-ingestion-normalization-srcschemapy">1. Ingestion &amp; Normalization (<code>src/schema.py</code>)</h3>
+<p>Incoming telemetry files are parsed and normalized into standard <code>ForensicArtifact</code> Pydantic models:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ForensicArtifact</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span>          <span class="c1"># ISO 8601 normalized event timestamp</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">source_type</span><span class="p">:</span> <span class="nb">str</span>        <span class="c1"># e.g., EVTX_4688, PCAP_DNS_TUNNEL, EML_URL</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">host</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>     <span class="c1"># Hostname or IP address</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">user</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>     <span class="c1"># Username or account identifier</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">details</span><span class="p">:</span> <span class="nb">str</span>            <span class="c1"># Raw command line, DNS query, or header summary</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">ioc_detected</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="c1"># Extracted IP, domain, hash, or suspicious URL</span>
+</code></pre></div>
+<h3 id="2-deterministic-guardrails-sigma-yara">2. Deterministic Guardrails (Sigma &amp; YARA)</h3>
+<p>To ensure reliable, auditable detection of known malicious indicators:
+* <strong>Sigma Engine (<code>src/parsers/sigma_scanner.py</code>):</strong> Ingests community YAML Sigma rules from <code>rules/sigma/</code>. Checks normalized EVTX event details for known adversarial techniques (e.g., encoded PowerShell execution, remote WMI process creation, volume shadow copy deletion).
+* <strong>YARA Engine (<code>src/parsers/yara_scanner.py</code>):</strong> Automatically compiles <code>.yar</code> signatures from <code>rules/yara/</code> to scan memory dumps and file binaries for PsExec artifacts, lateral movement tools, and ransomware headers.</p>
+<h3 id="3-local-rag-mitre-attck-mapping-srckb">3. Local RAG &amp; MITRE ATT&amp;CK Mapping (<code>src/kb/</code>)</h3>
+<ul>
+<li><strong>Embedding Model:</strong> <code>all-MiniLM-L6-v2</code> dense sentence representations running locally via <code>sentence-transformers</code>.</li>
+<li><strong>Vector Store:</strong> <strong>ChromaDB</strong> indexed against enterprise MITRE ATT&amp;CK STIX 2.1 objects.</li>
+<li><strong>Operation:</strong> When suspicious activities are identified, SENTINEL performs semantic vector similarity queries to retrieve exact MITRE Technique IDs (e.g., <code>T1059.001 - PowerShell</code>, <code>T1071.004 - DNS Tunneling</code>, <code>T1566.002 - Spearphishing Link</code>).</li>
+</ul>
+<hr />
+<h2 id="the-multi-agent-pipeline">🤖 The Multi-Agent Pipeline</h2>
+<h3 id="a-domain-specialist-agents-fan-out">A. Domain Specialist Agents (Fan-Out)</h3>
+<p>Rather than overloading a single model with thousands of disparate logs, four dedicated sub-agents evaluate their specific forensic domains independently:</p>
+<ol>
+<li><strong>💻 Endpoint Analyst Agent:</strong></li>
+<li>Examines Windows Security logs (Event IDs <code>4624</code>, <code>4625</code>, <code>4688</code>, <code>4104</code>, <code>7045</code>).</li>
+<li>Evaluates parent-child process hierarchies and Sigma rule detections.</li>
+<li>
+<p>Identifies privilege escalation, execution, and persistence techniques.</p>
+</li>
+<li>
+<p><strong>🌐 Network Analyst Agent:</strong></p>
+</li>
+<li>Computes <strong>Shannon Entropy</strong> over DNS query subdomains to flag high-entropy DNS tunneling tools (e.g., Iodine, DNSCat2).</li>
+<li>Parses HTTP streams to identify unencrypted credential transmissions and exfiltration payloads.</li>
+<li>
+<p>Computes temporal connection counts to flag periodic Command and Control (C2) beacons.</p>
+</li>
+<li>
+<p><strong>🧠 Memory Analyst Agent:</strong></p>
+</li>
+<li>Evaluates Volatility 3 outputs (<code>windows.pslist</code>, <code>windows.netscan</code>, <code>windows.malfind</code>).</li>
+<li>
+<p>Detects reflective DLL injection, process hollowing, and in-RAM YARA signature hits.</p>
+</li>
+<li>
+<p><strong>📧 Email / Phishing Analyst Agent:</strong></p>
+</li>
+<li>Audits RFC 5322 email headers for SPF (<code>Received-SPF</code>) and DKIM authentication failures.</li>
+<li>Extracts embedded hyperlink targets to uncover credential harvesting lures.</li>
+<li>Flags high-urgency social engineering patterns and suspicious file attachments.</li>
+</ol>
+<hr />
+<h3 id="b-lead-soc-correlation-agent-fan-in">B. Lead SOC Correlation Agent (Fan-In)</h3>
+<p>The <strong>Lead SOC Analyst</strong> acts as the synthesis hub. It takes the summarized intelligence outputs from all four domain specialists and fuses them into a <strong>single, chronological attack story</strong>.</p>
+<p>By reasoning over multi-source evidence, it establishes causality:
+$$\text{Phishing Lure} \xrightarrow{\text{Delivery}} \text{DNS Beacon} \xrightarrow{\text{C2 Established}} \text{Process Execution} \xrightarrow{\text{Privilege Escalation}} \text{Data Exfiltration}$$</p>
+<hr />
+<h3 id="c-closed-loop-action-pipeline">C. Closed-Loop Action Pipeline</h3>
+<p>Following correlation, SENTINEL automatically triggers proactive defensive actions:</p>
+<ol>
+<li><strong>🛡️ SOAR Remediation Agent:</strong></li>
+<li>Synthesizes host firewall commands (<code>netsh advfirewall</code> for Windows, <code>iptables</code> for Linux).</li>
+<li>Formats REST API payloads for active EDR isolation (CrowdStrike Falcon, Microsoft Defender API).</li>
+<li>
+<p>Generates custom Sigma and YARA rules to detect future occurrences of the observed threat.</p>
+</li>
+<li>
+<p><strong>🔍 SIEM Threat Hunter:</strong></p>
+</li>
+<li>Authors target hunting queries in <strong>Splunk SPL</strong> across index telemetry.</li>
+<li>Authors <strong>Microsoft Sentinel / Azure KQL</strong> queries targeting <code>DeviceProcessEvents</code> and <code>DeviceNetworkEvents</code>.</li>
+<li>
+<p>Authors <strong>Elastic EQL</strong> queries to trace parent-child process chains and network connections.</p>
+</li>
+<li>
+<p><strong>🎫 Automated Ticketing Engine:</strong></p>
+</li>
+<li>Transforms incident findings, timelines, and remediation recommendations into a structured, validated <strong>Jira / ServiceNow REST API JSON payload</strong>.</li>
+</ol>
+<hr />
+<h2 id="forensic-data-lifecycle-sqlite-persistence">💾 Forensic Data Lifecycle &amp; SQLite Persistence</h2>
+<p>SENTINEL uses a persistent SQLite database (<code>data/sentinel.db</code>) with a data reduction architecture:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[ Raw Artifacts (temp_uploads/) ]  &lt;-- Multi-gigabyte PCAP, EVTX, RAM dumps
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>               │
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>               ▼ (Extracted &amp; Normalized)
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>[ Normalized ForensicArtifacts ]   &lt;-- Structured Pydantic objects (KB size)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>               │
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>               ▼ (Investigated &amp; Correlated)
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>[ SQLite Database (data/sentinel.db) ] &lt;-- Permanent Case Archive
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>               │
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>               ▼ (Instant Retrieval)
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>[ Dashboard "Case History" Replay ] &lt;-- Instant reconstruction of charts and reports
+</code></pre></div>
+<h3 id="storage-efficiency-instant-replay">Storage Efficiency &amp; Instant Replay</h3>
+<ul>
+<li><strong>99.9% Data Reduction:</strong> Storing raw memory dumps or packet captures for every investigation is unsustainable. SENTINEL extracts high-value security evidence into serialized JSON strings in SQLite.</li>
+<li><strong>Zero Re-computation:</strong> When an archived case is opened in the dashboard, the pre-computed timelines, agent summaries, attack relationships, and reports are deserialized in milliseconds without re-invoking the LLM.</li>
+</ul>
 
 
 
@@ -682,7 +1047,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>

@@ -1,21 +1,29 @@
 site_name: SENTINEL
-site_description: Autonomous Forensic Agent powered by LangGraph, Local LLMs, and RAG.
+site_description: Autonomous Multi-Agent Digital Forensics & Incident Response Platform powered by LangGraph, Local LLMs, and RAG.
 site_author: Uday Grover
 repo_url: https://github.com/udaygr0ver/SENTINEL
+repo_name: udaygr0ver/SENTINEL
 
 theme:
   name: material
   palette:
-    # Palette toggle for dark mode
     - scheme: slate
       primary: teal
       accent: cyan
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+    - content.code.annotate
 
 nav:
   - Overview: index.md
-  - Architecture: architecture.md
-  - User Guide: usage.md
-  - Extending SENTINEL: development.md
+  - Architecture & Multi-Agent Flow: architecture.md
+  - User Guide & Walkthrough: usage.md
+  - Differentiation & Endterm Roadmap: roadmap.md
+  - Developer Guide: development.md
 
 markdown_extensions:
   - pymdownx.highlight:

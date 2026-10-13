@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Autonomous Forensic Agent powered by LangGraph, Local LLMs, and RAG.">
+        <meta name="description" content="Autonomous Multi-Agent Digital Forensics & Incident Response Platform powered by LangGraph, Local LLMs, and RAG.">
       
       
         <meta name="author" content="Uday Grover">
@@ -88,9 +88,7 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="SENTINEL" class="md-header__button md-logo" aria-label="SENTINEL" data-md-component="logo">
       
@@ -184,7 +182,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    GitHub
+    udaygr0ver/SENTINEL
   </div>
 </a>
       </div>
@@ -197,6 +195,112 @@
       
       
         
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture & Multi-Agent Flow
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="usage/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Guide & Walkthrough
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="roadmap/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Differentiation & Endterm Roadmap
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="development/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
           
         
       
@@ -211,8 +315,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="." title="SENTINEL" class="md-nav__button md-logo" aria-label="SENTINEL" data-md-component="logo">
       
@@ -230,7 +336,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    GitHub
+    udaygr0ver/SENTINEL
   </div>
 </a>
     </div>
@@ -304,10 +410,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
+  <a href="#the-core-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Features
+        🎯 The Core Problem
       
     </span>
   </a>
@@ -315,10 +421,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
+  <a href="#the-sentinel-solution" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Getting Started
+        💡 The SENTINEL Solution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌟 Key Capabilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌟 Key Capabilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-multi-source-forensic-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-Source Forensic Ingestion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-multi-agent-langgraph-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Multi-Agent LangGraph Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-interactive-soc-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Interactive SOC Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧭 Documentation Navigation
       
     </span>
   </a>
@@ -347,7 +514,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Architecture & Multi-Agent Flow
   
 
     
@@ -374,7 +541,34 @@
   <span class="md-ellipsis">
     
   
-    User Guide
+    User Guide & Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Differentiation & Endterm Roadmap
   
 
     
@@ -401,7 +595,7 @@
   <span class="md-ellipsis">
     
   
-    Extending SENTINEL
+    Developer Guide
   
 
     
@@ -441,10 +635,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
+  <a href="#the-core-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Features
+        🎯 The Core Problem
       
     </span>
   </a>
@@ -452,10 +646,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
+  <a href="#the-sentinel-solution" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Getting Started
+        💡 The SENTINEL Solution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌟 Key Capabilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌟 Key Capabilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-multi-source-forensic-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-Source Forensic Ingestion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-multi-agent-langgraph-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Multi-Agent LangGraph Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-interactive-soc-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Interactive SOC Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧭 Documentation Navigation
       
     </span>
   </a>
@@ -483,23 +738,84 @@
 
 
 <h1 id="welcome-to-sentinel">Welcome to SENTINEL</h1>
-<p><strong>SENTINEL</strong> is an Autonomous Forensic Agent designed to triage digital evidence (EVTX, PCAP, Memory Dumps) automatically using Multi-Agent Large Language Models (LLMs) and deterministic Threat Intelligence engines (YARA/Sigma).</p>
-<h2 id="features">Features</h2>
+<p><strong>SENTINEL</strong> is an <strong>Autonomous Multi-Agent Digital Forensics and Incident Response (DFIR) Platform</strong> designed to automate security incident triage, multi-domain evidence correlation, and threat containment without exposing sensitive enterprise telemetry to public cloud AI APIs.</p>
+<hr />
+<h2 id="the-core-problem">🎯 The Core Problem</h2>
+<p>Modern Security Operations Centers (SOCs) are overwhelmed by two systemic challenges:</p>
+<ol>
+<li><strong>Alert Fatigue &amp; Cognitive Overload:</strong> Tier-1 and Tier-2 security analysts triage between 500 and 1,000 alerts daily. Over 80% are false positives or disconnected point-in-time alerts (e.g., an alert from the firewall, an alert from the endpoint, and an alert from the email gateway). Analysts must spend 30 to 60 minutes manually stitching disparate logs together to understand the root cause of an intrusion.</li>
+<li><strong>Data Privacy &amp; Legal Privilege Breaches:</strong> Forensic telemetry (memory images, PCAP network captures, Windows event logs, and email bodies) frequently contains <strong>unhashed passwords, customer PII, cryptographic keys, and proprietary corporate secrets</strong>. Routing this data to commercial cloud AI models (such as OpenAI GPT-4, Google Gemini, or Microsoft Copilot) violates strict data privacy standards (<strong>GDPR, HIPAA, SOC 2</strong>) and compromises legal attorney-client privilege during corporate breach litigation.</li>
+</ol>
+<hr />
+<h2 id="the-sentinel-solution">💡 The SENTINEL Solution</h2>
+<p>SENTINEL eliminates this trade-off by deploying an <strong>entirely local, air-gapped multi-agent investigation system</strong>:</p>
 <ul>
-<li><strong>Multi-Agent Orchestration</strong>: Specialized Endpoint, Network, and Memory analyst agents powered by LangGraph.</li>
-<li><strong>Deep Artifact Parsing</strong>: <ul>
-<li><strong>Endpoint</strong>: Parses EVTX logs and matches against Sigma rules.</li>
-<li><strong>Network</strong>: Extracts HTTP traffic, detects DNS Tunneling (via Shannon Entropy), and flags C2 Beacons (via statistical analysis).</li>
-<li><strong>Memory</strong>: Analyzes Volatility3 RAM dumps.</li>
+<li><strong>Zero Data Egress:</strong> All models run locally via <strong>Ollama (<code>llama3.1</code>)</strong>, vector embeddings run on-premise with <strong>ChromaDB</strong>, and cases are tracked in an embedded <strong>SQLite</strong> database.</li>
+<li><strong>Deterministic + Probabilistic Guardrails:</strong> Before any LLM reasoning takes place, raw evidence is evaluated against hardened <strong>Sigma YAML rules</strong> and compiled <strong>YARA signatures</strong> to eliminate false-negative dropouts for known threats.</li>
+<li><strong>Specialized Multi-Agent Collaboration:</strong> Implemented as a <strong>LangGraph Directed Acyclic Graph (DAG)</strong>, specialized sub-agents independently evaluate their domain (Endpoint, Network, Memory, Phishing) before feeding into a <strong>Lead SOC Correlation Analyst</strong> that deduces attack causality.</li>
+<li><strong>Actionable Closed-Loop Response:</strong> Automatically synthesizes custom <strong>SOAR containment playbooks</strong> (<code>netsh</code>, <code>iptables</code>, EDR API calls), multi-dialect <strong>SIEM threat hunting queries</strong> (Splunk SPL, Sentinel KQL, Elastic EQL), and structured <strong>Jira / ServiceNow incident tickets</strong>.</li>
 </ul>
-</li>
-<li><strong>Threat Intelligence Integrations</strong>: Real-time enrichment against VirusTotal and AbuseIPDB.</li>
-<li><strong>Interactive UI</strong>: View a force-directed attack graph and chronological incident narrative in a beautiful Streamlit dashboard.</li>
-<li><strong>STIX 2.1 Export</strong>: Download industry-standard Threat Intelligence bundles.</li>
-<li><strong>100% Local Processing</strong>: Runs entirely locally via Ollama, keeping sensitive evidence private.</li>
+<hr />
+<h2 id="key-capabilities">🌟 Key Capabilities</h2>
+<h3 id="1-multi-source-forensic-ingestion">1. Multi-Source Forensic Ingestion</h3>
+<p>SENTINEL natively extracts, normalizes, and correlates evidence across all primary forensic domains:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Artifact Type</th>
+<th style="text-align: left;">File Formats</th>
+<th style="text-align: left;">Forensic Extractions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Endpoint Logs</strong></td>
+<td style="text-align: left;"><code>.evtx</code></td>
+<td style="text-align: left;">Process execution (<code>4688</code>), User logon sessions (<code>4624</code>/<code>4625</code>), Service installations (<code>7045</code>), PowerShell ScriptBlock execution (<code>4104</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Network Streams</strong></td>
+<td style="text-align: left;"><code>.pcap</code>, <code>.cap</code></td>
+<td style="text-align: left;">HTTP request/response payloads, Shannon entropy DNS tunneling detection, statistical C2 beacon volume clustering</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Memory Images</strong></td>
+<td style="text-align: left;"><code>.mem</code>, <code>.raw</code>, <code>.vmem</code></td>
+<td style="text-align: left;">Volatility 3 integration for active processes (<code>pslist</code>), socket connections (<code>netscan</code>), and in-RAM code injections (<code>malfind</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Email Forensics</strong></td>
+<td style="text-align: left;"><code>.eml</code></td>
+<td style="text-align: left;">SPF/DKIM header authentication auditing, sender spoofing detection, malicious URL extraction, attachment MD5 hashing</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-multi-agent-langgraph-pipeline">2. Multi-Agent LangGraph Pipeline</h3>
+<p>A coordinated team of autonomous agents operating under a strictly validated schema:
+- <strong>💻 Endpoint Analyst Agent:</strong> Evaluates EVTX logs, Sigma detections, and process trees.
+- <strong>🌐 Network Analyst Agent:</strong> Inspects DNS tunneling anomalies, HTTP requests, and C2 beacons.
+- <strong>🧠 Memory Analyst Agent:</strong> Analyzes process hollowing and RAM injections.
+- <strong>📧 Email / Phishing Analyst Agent:</strong> Analyzes social engineering tactics and credential harvesting lures.
+- <strong>⚡ Lead SOC Correlation Agent:</strong> Synthesizes domain findings into a unified, chronological attack narrative.
+- <strong>🛡️ SOAR Remediation Agent:</strong> Generates immediate firewall blocking rules and EDR isolation commands.
+- <strong>🔍 SIEM Threat Hunter:</strong> Auto-authors ready-to-deploy Splunk SPL, Azure KQL, and Elastic EQL hunting queries.
+- <strong>🎫 Automated Ticketing Engine:</strong> Generates structured Jira and ServiceNow incident payloads.</p>
+<h3 id="3-interactive-soc-dashboard">3. Interactive SOC Dashboard</h3>
+<p>A 9-tab interactive command center powered by Streamlit:
+- <strong>📊 Interactive Timeline:</strong> Plotly Gantt scatter chart displaying chronologically sequenced forensic events.
+- <strong>🔗 Attack Relationship Graph:</strong> Force-directed Vis.js network graph connecting hosts, user accounts, and IOCs.
+- <strong>🎯 IOCs &amp; MITRE TTPs:</strong> Extracted indicators and dynamic ATT&amp;CK technique badges.
+- <strong>🌍 Threat Intel Integration:</strong> On-demand reputation lookups with VirusTotal and AbuseIPDB.
+- <strong>🔐 STIX 2.1 Export:</strong> Downloadable OASIS CTI bundles for automated threat sharing.</p>
+<hr />
+<h2 id="documentation-navigation">🧭 Documentation Navigation</h2>
+<p>Explore the complete documentation:</p>
+<ul>
+<li><a href="architecture/"><strong>Architecture &amp; Multi-Agent Flow</strong></a>: Deep-dive into the LangGraph state machine, deterministic guardrails, and local vector RAG.</li>
+<li><a href="usage/"><strong>User Guide &amp; Walkthrough</strong></a>: Step-by-step instructions for local deployment, dashboard navigation, and automated CLI evaluation.</li>
+<li><a href="roadmap/"><strong>Differentiation &amp; Endterm Roadmap</strong></a>: Comprehensive comparison against SIEM, SOAR, and Cloud Copilots, plus the Sprint plan to the final capstone defense.</li>
+<li><a href="development/"><strong>Developer Guide</strong></a>: How to add custom Sigma/YARA rules, write new parsers, and extend LangGraph sub-agents.</li>
 </ul>
-<h2 id="getting-started">Getting Started</h2>
-<p>Check out the <a href="usage/">User Guide</a> to learn how to deploy SENTINEL using Docker Compose.</p>
 
 
 
@@ -549,7 +865,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "content.code.copy", "content.code.annotate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.d7400e89.min.js"></script>

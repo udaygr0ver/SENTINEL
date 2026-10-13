@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Autonomous Forensic Agent powered by LangGraph, Local LLMs, and RAG.">
+        <meta name="description" content="Autonomous Multi-Agent Digital Forensics & Incident Response Platform powered by LangGraph, Local LLMs, and RAG.">
       
       
         <meta name="author" content="Uday Grover">
@@ -16,7 +16,7 @@
         <link rel="prev" href="../architecture/">
       
       
-        <link rel="next" href="../development/">
+        <link rel="next" href="../roadmap/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>User Guide - SENTINEL</title>
+        <title>User Guide & Walkthrough - SENTINEL</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#user-guide" class="md-skip">
+        <a href="#sentinel-user-guide-walkthrough" class="md-skip">
           Skip to content
         </a>
       
@@ -90,9 +90,7 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="SENTINEL" class="md-header__button md-logo" aria-label="SENTINEL" data-md-component="logo">
       
@@ -114,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              User Guide
+              User Guide & Walkthrough
             
           </span>
         </div>
@@ -186,7 +184,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    GitHub
+    udaygr0ver/SENTINEL
   </div>
 </a>
       </div>
@@ -199,6 +197,112 @@
       
       
         
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture & Multi-Agent Flow
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Guide & Walkthrough
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../roadmap/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Differentiation & Endterm Roadmap
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../development/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Developer Guide
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
           
         
       
@@ -213,8 +317,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="SENTINEL" class="md-nav__button md-logo" aria-label="SENTINEL" data-md-component="logo">
       
@@ -232,7 +338,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    GitHub
+    udaygr0ver/SENTINEL
   </div>
 </a>
     </div>
@@ -280,7 +386,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Architecture & Multi-Agent Flow
   
 
     
@@ -316,7 +422,7 @@
   <span class="md-ellipsis">
     
   
-    User Guide
+    User Guide & Walkthrough
   
 
     
@@ -334,7 +440,7 @@
   <span class="md-ellipsis">
     
   
-    User Guide
+    User Guide & Walkthrough
   
 
     
@@ -360,10 +466,60 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#running-with-docker-compose-recommended" class="md-nav__link">
+  <a href="#prerequisites-local-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Running with Docker Compose (Recommended)
+        💻 Prerequisites &amp; Local Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 Prerequisites &amp; Local Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Clone the Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-configure-python-virtual-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Configure Python Virtual Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-start-ollama-pull-llama-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Start Ollama &amp; Pull Llama 3.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-interactive-soc-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Running the Interactive SOC Dashboard
       
     </span>
   </a>
@@ -371,10 +527,176 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#navigating-the-dashboard" class="md-nav__link">
+  <a href="#conducting-an-investigation-step-by-step" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Navigating the Dashboard
+        🔍 Conducting an Investigation (Step-by-Step)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Conducting an Investigation (Step-by-Step)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-upload-forensic-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Upload Forensic Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configure-investigation-settings-sidebar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configure Investigation Settings (Sidebar)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-execute-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Execute Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-the-9-tab-results-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Navigating the 9-Tab Results Dashboard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Navigating the 9-Tab Results Dashboard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tab-1-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 1: 📊 Timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-2-attack-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 2: 🔗 Attack Graph
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-3-agent-summaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 3: 🤖 Agent Summaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-4-iocs-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 4: 🎯 IOCs &amp; Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-5-threat-intel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 5: 🌍 Threat Intel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-6-soar-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 6: 🛡️ SOAR Remediation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-7-threat-hunting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 7: 🔍 Threat Hunting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-8-soc-ticket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 8: 🎫 SOC Ticket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-9-report-stix-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 9: 📋 Report &amp; STIX 2.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reviewing-past-cases-case-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📂 Reviewing Past Cases (Case History)
       
     </span>
   </a>
@@ -382,10 +704,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rest-api-fastapi" class="md-nav__link">
+  <a href="#headless-automated-cli-demo-run_demopy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        REST API (FastAPI)
+        ⚡ Headless Automated CLI Demo (run_demo.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest-api-usage-fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 REST API Usage (FastAPI)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 REST API Usage (FastAPI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Running Unit Tests
       
     </span>
   </a>
@@ -407,6 +768,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Differentiation & Endterm Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../development/" class="md-nav__link">
         
   
@@ -414,7 +802,7 @@
   <span class="md-ellipsis">
     
   
-    Extending SENTINEL
+    Developer Guide
   
 
     
@@ -454,10 +842,60 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#running-with-docker-compose-recommended" class="md-nav__link">
+  <a href="#prerequisites-local-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Running with Docker Compose (Recommended)
+        💻 Prerequisites &amp; Local Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 Prerequisites &amp; Local Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Clone the Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-configure-python-virtual-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Configure Python Virtual Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-start-ollama-pull-llama-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Start Ollama &amp; Pull Llama 3.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-interactive-soc-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Running the Interactive SOC Dashboard
       
     </span>
   </a>
@@ -465,10 +903,176 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#navigating-the-dashboard" class="md-nav__link">
+  <a href="#conducting-an-investigation-step-by-step" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Navigating the Dashboard
+        🔍 Conducting an Investigation (Step-by-Step)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Conducting an Investigation (Step-by-Step)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-upload-forensic-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Upload Forensic Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configure-investigation-settings-sidebar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configure Investigation Settings (Sidebar)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-execute-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Execute Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-the-9-tab-results-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Navigating the 9-Tab Results Dashboard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Navigating the 9-Tab Results Dashboard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tab-1-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 1: 📊 Timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-2-attack-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 2: 🔗 Attack Graph
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-3-agent-summaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 3: 🤖 Agent Summaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-4-iocs-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 4: 🎯 IOCs &amp; Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-5-threat-intel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 5: 🌍 Threat Intel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-6-soar-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 6: 🛡️ SOAR Remediation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-7-threat-hunting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 7: 🔍 Threat Hunting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-8-soc-ticket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 8: 🎫 SOC Ticket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-9-report-stix-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab 9: 📋 Report &amp; STIX 2.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reviewing-past-cases-case-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📂 Reviewing Past Cases (Case History)
       
     </span>
   </a>
@@ -476,10 +1080,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rest-api-fastapi" class="md-nav__link">
+  <a href="#headless-automated-cli-demo-run_demopy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        REST API (FastAPI)
+        ⚡ Headless Automated CLI Demo (run_demo.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest-api-usage-fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 REST API Usage (FastAPI)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 REST API Usage (FastAPI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Running Unit Tests
       
     </span>
   </a>
@@ -506,37 +1149,148 @@
   
 
 
-<h1 id="user-guide">User Guide</h1>
-<p>SENTINEL can be run completely locally for maximum data privacy, or orchestrated via Docker Compose for production-grade REST API integrations.</p>
-<h2 id="running-with-docker-compose-recommended">Running with Docker Compose (Recommended)</h2>
-<p>SENTINEL is containerized for seamless execution across operating systems.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Clone the repository</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/udaygr0ver/SENTINEL.git
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>SENTINEL
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Start the stack</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+<h1 id="sentinel-user-guide-walkthrough">SENTINEL User Guide &amp; Walkthrough</h1>
+<p>This guide provides end-to-end instructions for deploying SENTINEL locally, conducting an autonomous multi-source forensic investigation, navigating the 9-tab dashboard, running automated CLI evaluations, and integrating with the REST API.</p>
+<hr />
+<h2 id="prerequisites-local-setup">💻 Prerequisites &amp; Local Setup</h2>
+<p>SENTINEL is built for completely local, air-gapped execution. An Apple Silicon Mac (M1/M2/M3) or a machine with a dedicated GPU and 16GB+ RAM is recommended for optimal inference speed.</p>
+<h3 id="step-1-clone-the-repository">Step 1: Clone the Repository</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/udaygr0ver/SENTINEL.git
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>SENTINEL
 </code></pre></div>
-<p>This will launch:
-1. <strong>SENTINEL API (FastAPI)</strong> at <code>http://localhost:8000</code>
-2. <strong>SENTINEL Dashboard (Streamlit)</strong> at <code>http://localhost:8501</code></p>
-<p><em>(Make sure Ollama is running locally on port 11434 before starting the Docker stack!)</em></p>
-<h2 id="navigating-the-dashboard">Navigating the Dashboard</h2>
-<ol>
-<li><strong>New Investigation:</strong> Upload evidence files (<code>.evtx</code>, <code>.pcap</code>, etc.). Select the Local LLM. Add optional API keys for Threat Intel. Click <strong>Start Analysis</strong>.</li>
-<li><strong>Case History:</strong> Use the sidebar to toggle to historical cases. Click "View Report" to instantly load a past case from the SQLite database.</li>
-<li><strong>Attack Graph:</strong> View an interactive node-link mapping of compromised hosts and IOCs.</li>
-</ol>
-<h2 id="rest-api-fastapi">REST API (FastAPI)</h2>
-<p>For automation or SIEM integration, interact directly with the FastAPI backend:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Start a new analysis</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"http://localhost:8000/api/v1/analyze"</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-F<span class="w"> </span><span class="s2">"files=@evidence.pcap"</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>-F<span class="w"> </span><span class="s2">"llm_model=llama3.1"</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># List past cases</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>curl<span class="w"> </span><span class="s2">"http://localhost:8000/api/v1/cases"</span>
+<h3 id="step-2-configure-python-virtual-environment">Step 2: Configure Python Virtual Environment</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># On Windows: venv\Scripts\activate</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </code></pre></div>
+<h3 id="step-3-start-ollama-pull-llama-31">Step 3: Start Ollama &amp; Pull Llama 3.1</h3>
+<p>Install <a href="https://ollama.ai/">Ollama</a> if not already installed, ensure the Ollama daemon is running, and pull the default Llama 3.1 model:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ollama<span class="w"> </span>pull<span class="w"> </span>llama3.1
+</code></pre></div>
+<em>(You can also pull <code>mistral</code> or <code>llama3.1:70b</code> if your hardware permits).</em></p>
+<hr />
+<h2 id="running-the-interactive-soc-dashboard">🚀 Running the Interactive SOC Dashboard</h2>
+<p>Launch the Streamlit web dashboard:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>streamlit<span class="w"> </span>run<span class="w"> </span>src/app.py
+</code></pre></div>
+Open your browser and navigate to <strong><code>http://localhost:8501</code></strong>.</p>
+<hr />
+<h2 id="conducting-an-investigation-step-by-step">🔍 Conducting an Investigation (Step-by-Step)</h2>
+<h3 id="1-upload-forensic-evidence">1. Upload Forensic Evidence</h3>
+<p>In the <strong>🆕 New Investigation</strong> view, drag and drop one or more forensic evidence files into the upload zone:
+* <code>.evtx</code> (Windows Event Logs)
+* <code>.pcap</code> or <code>.cap</code> (Network Packet Captures)
+* <code>.mem</code>, <code>.raw</code>, or <code>.vmem</code> (Memory Dumps)
+* <code>.eml</code> (Phishing Email Files)</p>
+<blockquote>
+<p><strong>💡 Try the Pre-Packaged Demo Data:</strong>
+The repository includes verified attack fixtures in the <code>demo_data/</code> folder:
+* <code>demo_data/phishing_attack.eml</code>: Spoofed Office 365 credential harvesting email with failed SPF/DKIM records.
+* <code>demo_data/lateral_movement.pcap</code>: Scapy capture containing high-entropy DNS tunneling and HTTP C2 beaconing.
+* <code>demo_data/security_log.evtx</code>: Real Windows Event Log containing suspicious process creations and logon sessions.</p>
+</blockquote>
+<h3 id="2-configure-investigation-settings-sidebar">2. Configure Investigation Settings (Sidebar)</h3>
+<ul>
+<li><strong>LLM Model:</strong> Select <code>llama3.1</code> (default), <code>mistral</code>, or larger parameter variants.</li>
+<li><strong>RAG Top-K Results:</strong> Adjust the number of MITRE ATT&amp;CK techniques retrieved per suspicious event (default: 3).</li>
+<li><strong>Threat Intel APIs (Optional):</strong> Enter your VirusTotal and AbuseIPDB API keys to enable real-time reputation queries for extracted IOCs.</li>
+</ul>
+<h3 id="3-execute-analysis">3. Execute Analysis</h3>
+<p>Click <strong>🚀 Run Analysis</strong>. The real-time progress bar will track the 7-agent pipeline:
+$$\text{Parser} \rightarrow \text{Domain Specialists} \rightarrow \text{Lead SOC Correlation} \rightarrow \text{SOAR} \rightarrow \text{Threat Hunter} \rightarrow \text{Ticketing}$$</p>
+<hr />
+<h2 id="navigating-the-9-tab-results-dashboard">📊 Navigating the 9-Tab Results Dashboard</h2>
+<p>Once the investigation completes, SENTINEL presents a comprehensive multi-tab SOC interface:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│ [📊 Timeline] [🔗 Attack Graph] [🤖 Agent Summaries] [🎯 IOCs] [🌍 Threat Intel] [🛡️ SOAR] ...  │
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<h3 id="tab-1-timeline">Tab 1: 📊 Timeline</h3>
+<ul>
+<li><strong>Plotly Interactive Gantt Chart:</strong> Displays timestamped forensic events across all source domains. Hover over data points to inspect raw command lines, URLs, and process names.</li>
+<li><strong>AI-Generated Narrative:</strong> The Lead SOC Analyst's correlated, chronological intrusion story detailing the initial access vector through to exfiltration.</li>
+</ul>
+<h3 id="tab-2-attack-graph">Tab 2: 🔗 Attack Graph</h3>
+<ul>
+<li><strong>Force-Directed Network Visualization:</strong> Built with <code>streamlit-agraph</code> / Vis.js.</li>
+<li><strong>Nodes:</strong></li>
+<li>🔵 <strong>Hexagons (Hosts):</strong> Compromised workstations or servers.</li>
+<li>💎 <strong>Diamonds (Users):</strong> User accounts identified in logon or process events.</li>
+<li>⭐ <strong>Stars (IOCs):</strong> Malicious IPs, domains, hashes, and URLs.</li>
+<li>🟡 <strong>Circles (Global):</strong> Global scan or signature detections.</li>
+<li><strong>Physics Engine:</strong> Tuned repulsive physics allow dragging nodes and inspecting relationship edges without text overlap.</li>
+</ul>
+<h3 id="tab-3-agent-summaries">Tab 3: 🤖 Agent Summaries</h3>
+<p>A 2-column comparative layout displaying the individual intelligence summaries from each specialized agent:
+* <strong>💻 Endpoint Analyst:</strong> Process anomalies, Sigma rule hits, privilege escalation attempts.
+* <strong>🌐 Network Analyst:</strong> DNS tunneling anomalies, C2 beacon intervals, exfiltration targets.
+* <strong>🧠 Memory Analyst:</strong> Volatility RAM analysis and injected code detection.
+* <strong>📧 Email Analyst:</strong> Spoofed sender headers, failed SPF/DKIM records, and phishing lure tactics.</p>
+<h3 id="tab-4-iocs-evidence">Tab 4: 🎯 IOCs &amp; Evidence</h3>
+<ul>
+<li><strong>IOC Badges:</strong> Extracted indicators of compromise ready for copying into firewall or proxy blocklists.</li>
+<li><strong>MITRE ATT&amp;CK TTP Badges:</strong> Visual tags (e.g., <code>⚔️ T1059.001</code>, <code>⚔️ T1071.004</code>) dynamically extracted from Sigma and YARA findings.</li>
+<li><strong>Full Evidence Log:</strong> Chronological table of all parsed <code>ForensicArtifact</code> objects with source type, user, host, and details.</li>
+</ul>
+<h3 id="tab-5-threat-intel">Tab 5: 🌍 Threat Intel</h3>
+<ul>
+<li>Real-time reputation lookups for extracted IOCs against <strong>VirusTotal</strong> (malicious vs. clean engine detections) and <strong>AbuseIPDB</strong> (confidence of abuse percentage).</li>
+<li>Direct deep-links to external intelligence pages.</li>
+</ul>
+<h3 id="tab-6-soar-remediation">Tab 6: 🛡️ SOAR Remediation</h3>
+<ul>
+<li><strong>Network Containment:</strong> Ready-to-execute Windows <code>netsh advfirewall</code> and Linux <code>iptables</code> rules to block malicious IPs and C2 domains.</li>
+<li><strong>EDR Host Isolation:</strong> API payloads for CrowdStrike Falcon and Microsoft Defender for Endpoint.</li>
+<li><strong>Custom Detection Signatures:</strong> Auto-authored Sigma and YARA rules to detect recurring instances of the attack.</li>
+<li><strong>Download Button:</strong> Export the full remediation plan as Markdown.</li>
+</ul>
+<h3 id="tab-7-threat-hunting">Tab 7: 🔍 Threat Hunting</h3>
+<ul>
+<li><strong>Splunk SPL:</strong> Multi-index hunting queries scanning for observed process executions, C2 URLs, and beacon intervals.</li>
+<li><strong>Microsoft Sentinel KQL:</strong> Queries joining <code>DeviceProcessEvents</code> and <code>DeviceNetworkEvents</code>.</li>
+<li><strong>Elastic EQL:</strong> Process lineage queries tracing child-to-parent execution chains.</li>
+<li><strong>Download Button:</strong> Export queries as Markdown.</li>
+</ul>
+<h3 id="tab-8-soc-ticket">Tab 8: 🎫 SOC Ticket</h3>
+<ul>
+<li>Standardized, syntax-highlighted <strong>Jira / ServiceNow Incident API JSON</strong> payload with mapped incident priority, summary, timeline, and remediation recommendations.</li>
+<li><strong>Download Button:</strong> Export ticket payload as JSON.</li>
+</ul>
+<h3 id="tab-9-report-stix-21">Tab 9: 📋 Report &amp; STIX 2.1</h3>
+<ul>
+<li><strong>Full Forensic Report:</strong> Complete executive summary and technical analysis available for one-click Markdown download.</li>
+<li><strong>STIX 2.1 Bundle:</strong> Machine-readable OASIS Cyber Threat Intelligence JSON bundle containing <code>indicator</code>, <code>malware</code>, and <code>observed-data</code> objects for downstream TIP/SOAR ingestion.</li>
+</ul>
+<hr />
+<h2 id="reviewing-past-cases-case-history">📂 Reviewing Past Cases (Case History)</h2>
+<p>In the sidebar, switch from <strong>🆕 New Investigation</strong> to <strong>📂 Case History</strong>:
+* View all previous investigations stored in the local SQLite database (<code>data/sentinel.db</code>).
+* Click <strong>📂 View Report</strong> on any case to instantly restore the full dashboard, timeline, attack graph, and IOCs in milliseconds with <strong>zero LLM re-computation</strong>.</p>
+<hr />
+<h2 id="headless-automated-cli-demo-run_demopy">⚡ Headless Automated CLI Demo (<code>run_demo.py</code>)</h2>
+<p>If you want to evaluate the complete multi-agent pipeline from the terminal without opening a browser:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python<span class="w"> </span>run_demo.py
+</code></pre></div>
+<p>This runs the complete 7-agent pipeline across the sample EML, PCAP, and EVTX files in <code>demo_data/</code> and saves the full report to <strong><code>demo_output.md</code></strong>.</p>
+<hr />
+<h2 id="rest-api-usage-fastapi">🌐 REST API Usage (FastAPI)</h2>
+<p>For enterprise automation, SENTINEL exposes a full REST API:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>uvicorn<span class="w"> </span>src.api:app<span class="w"> </span>--reload<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
+</code></pre></div>
+<h3 id="endpoints">Endpoints</h3>
+<ul>
+<li><code>POST /api/v1/analyze</code>: Upload evidence files and trigger background multi-agent investigation.</li>
+<li><code>GET /api/v1/cases</code>: Retrieve a list of all historical forensic cases.</li>
+<li><code>GET /api/v1/cases/{case_id}</code>: Retrieve detailed state, timeline, report, and IOCs for a specific case.</li>
+<li><code>GET /health</code>: Healthcheck endpoint.</li>
+</ul>
+<p>Visit <strong><code>http://localhost:8000/docs</code></strong> for interactive Swagger/OpenAPI documentation.</p>
+<hr />
+<h2 id="running-unit-tests">🧪 Running Unit Tests</h2>
+<p>Run the full pytest suite to verify all forensic parsers and rule engines:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pytest<span class="w"> </span>-v
+</code></pre></div>
+All 10 tests should pass cleanly in under 1 second.</p>
 
 
 
@@ -586,7 +1340,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
